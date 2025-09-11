@@ -1,5 +1,5 @@
 ---
-title: Installation
+title: Getting Started
 description: Detailed instructions on how to install the GitKraken MCP Server in various IDEs and editors.
 taxonomy:
   category: MCP
