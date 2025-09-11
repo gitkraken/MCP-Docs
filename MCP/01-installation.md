@@ -14,7 +14,7 @@ Getting started is easy in a variety of ways.
 
 ### GitLens
 
-With the latest version of [GitLens](https://www.gitkraken.com/gitlens) you can install the MCP Server easily from the command palette.
+With the latest version of [GitLens](https://www.gitkraken.com/gitlens) you can install the MCP Server easily from the command palette in VS Code, Cursor, and other IDEs based on VS Code.
 
 ![](../_images/install-gitlens.png)
 
@@ -57,6 +57,27 @@ You can then inspect the list of available MCP servers and tools by making sure 
 ![](../_images/copilot-prompt.png)
 
 #### Cursor
+
+Installing an MCP server into Cursor is easy. Using the command palette, select "View: Open MCP Settings".
+
+![](../_images/cursor-mcp-settings.png)
+
+If you have no servers installed yet, you will see this screen. Simply click the "Add Custom MCP" button to get started.
+
+![](../_images/cursor-mcp-add.png)
+
+Then, you will need to add the GitKraken MCP server to the JSON file. You can do this by copying the following JSON and pasting it.
+
+```json
+{
+  "mcpServers": {
+    "gitkraken": {
+      "command": "gk",
+      "args": ["mcp"]
+    }
+  }
+}
+```
 
 #### Claude Desktop
 
