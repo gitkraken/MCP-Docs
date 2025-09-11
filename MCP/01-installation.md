@@ -81,6 +81,29 @@ Then, you will need to add the GitKraken MCP server to the JSON file. You can do
 
 #### Claude Desktop
 
+Claude's MCP server process is a bit different than the IDEs, but is still fairly simple.
+
+First, open the settings from the App toolbar and then click into the "Developer" tab.
+
+![](../_images/claude-settings.png)
+
+Once you are in the developer tab, click the "Edit Config" button. This will open a directory containing `claude_desktop_config.json`.
+
+Edit that file using your favorite text editor and paste in the following JSON.
+
+```json
+{
+  "mcpServers": {
+    "gitkraken": {
+      "command": "gk",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+Save the file and restart Claude.
+
 ## Next Steps
 
 Once you are done setting up the MCP server, head over to our [Example Workflows](02-example-workflows.md) for inspiration on how to use the MCP server to make your day-to-day tasks easier and less tedious.
