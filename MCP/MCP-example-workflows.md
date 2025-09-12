@@ -31,4 +31,4 @@ This will call the `git_blame` tool as well as some native git commands to get t
 
 ## Next Steps
 
-Now that you have a better understanding of how to use the MCP server, you can start crafting your own workflows. We recommend checking out the [Tools Reference](MCP-tools-reference.md) to see what tools are available and how to use them. You can also check the [Prompt Reference](MCP-prompt-reference.md) for a list of all the prompts available. Prompts are self-contained workflows that will save you the effort of typing it all out yourself.
+Now that you have a better understanding of how to use the MCP server, you can start crafting your own workflows. We recommend checking out the [Tools Reference](/mcp/MCP-tools-reference.) to see what tools are available and how to use them. You can also check the [Prompt Reference](/mcp/MCP-prompt-reference) for a list of all the prompts available. Prompts are self-contained workflows that will save you the effort of typing it all out yourself.
