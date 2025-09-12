@@ -16,15 +16,15 @@ Getting started is easy in a variety of ways.
 
 With the latest version of [GitLens](https://www.gitkraken.com/gitlens) you can install the MCP Server easily from the command palette in VS Code, Cursor, and other IDEs based on VS Code.
 
-![](../_images/install-gitlens.png)
+(/wp-content/uploads//install-gitlens.png)
 
 This will handle all of the configuration for you. You can then inspect the list of available MCP servers by making sure you are in Agent mode and clicking the gear icon in the bottom right corner of the copilot side panel.
 
-![](../_images/copilot-prompt.png)
+(/wp-content/uploads//copilot-prompt.png)
 
 Then, scroll through the list and you will see "MCP Server: GitKraken (bundled with GitLens)".
 
-![](../_images/gitlens-bundled-tool.png)
+(/wp-content/uploads//gitlens-bundled-tool.png)
 
 ### GitKraken CLI (gitkraken-cli)
 
@@ -38,33 +38,33 @@ After authentication, you will need to add the MCP server to your preferred agen
 
 To install the MCP server into VS Code, you can run "MCP: Add server..." from the command palette.
 
-![](../_images/vscode-add-server.png)
+(/wp-content/uploads//vscode-add-server.png)
 
 In the following prompts, select "stdio" as the type of server.
 
-![](../_images/vscode-stdio.png)
+(/wp-content/uploads//vscode-stdio.png)
 
 In the next prompt, enter the command `gk mcp`.
 
-![](../_images/vscode-stdio-command.png)
+(/wp-content/uploads//vscode-stdio-command.png)
 
 Finally, give the server a name and press enter.
 
-![](../_images/vscode-stdio-name.png)
+(/wp-content/uploads//vscode-stdio-name.png)
 
 You can then inspect the list of available MCP servers and tools by making sure you are in Agent mode and clicking the gear icon in the bottom right corner of the copilot side panel.
 
-![](../_images/copilot-prompt.png)
+(/wp-content/uploads//copilot-prompt.png)
 
 #### Cursor
 
 Installing an MCP server into Cursor is easy. Using the command palette, select "View: Open MCP Settings".
 
-![](../_images/cursor-mcp-settings.png)
+(/wp-content/uploads//cursor-mcp-settings.png)
 
 If you have no servers installed yet, you will see this screen. Simply click the "Add Custom MCP" button to get started.
 
-![](../_images/cursor-mcp-add.png)
+(/wp-content/uploads//cursor-mcp-add.png)
 
 Then, you will need to add the GitKraken MCP server to the JSON file. You can do this by copying the following JSON and pasting it.
 
@@ -85,7 +85,7 @@ Claude's MCP server process is a bit different than the IDEs, but is still fairl
 
 First, open the settings from the App toolbar and then click into the "Developer" tab.
 
-![](../_images/claude-settings.png)
+(/wp-content/uploads//claude-settings.png)
 
 Once you are in the developer tab, click the "Edit Config" button. This will open a directory containing `claude_desktop_config.json`.
 
@@ -106,4 +106,4 @@ Save the file and restart Claude.
 
 ## Next Steps
 
-Once you are done setting up the MCP server, head over to our [Example Workflows](02-example-workflows.md) for inspiration on how to use the MCP server to make your day-to-day tasks easier and less tedious.
+Once you are done setting up the MCP server, head over to our [Example Workflows](MCP-example-workflows.md) for inspiration on how to use the MCP server to make your day-to-day tasks easier and less tedious.
