@@ -18,7 +18,15 @@ With the latest version of [GitLens](https://www.gitkraken.com/gitlens) you can 
 
 (/wp-content/uploads//install-gitlens.png)
 
-This will handle all of the configuration for you. You can then inspect the list of available MCP servers by making sure you are in Agent mode and clicking the gear icon in the bottom right corner of the copilot side panel.
+You can also install the MCP server using one of these convenient deeplinks:
+
+- [VS Code](https://gitkraken.dev/deeplink?product=gitlens&path=/link/command/install-mcp&ide=vscode)
+- [VS Code Insiders](https://gitkraken.dev/deeplink?product=gitlens&path=/link/command/install-mcp&ide=vscode-insiders)
+- [Cursor](https://gitkraken.dev/deeplink?product=gitlens&path=/link/command/install-mcp&ide=cursor)
+- [Windsurf](https://gitkraken.dev/deeplink?product=gitlens&path=/link/command/install-mcp&ide=windsurf)
+- [Trae](https://gitkraken.dev/deeplink?product=gitlens&path=/link/command/install-mcp&ide=trae)
+
+The command and links will handle all of the configuration for you. You can then inspect the list of available MCP servers by making sure you are in Agent mode and clicking the gear icon in the bottom right corner of the copilot side panel.
 
 (/wp-content/uploads//copilot-prompt.png)
 
@@ -110,9 +118,9 @@ Save the file and restart Claude.
 
 Navigate to Go to Settings > Tools > AI Assistant > Model Context Protocol (MCP)
 
-Click  Add to add a new MCP server configuration.
+Click Add to add a new MCP server configuration.
 
-In the New MCP Server dialog, using the dropdown, select **As JSON**. 
+In the New MCP Server dialog, using the dropdown, select **As JSON**.
 
 Paste the following JSON
 
