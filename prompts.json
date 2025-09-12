@@ -1,0 +1,15 @@
+{
+  "prompts": [
+    {
+      "name": "code_review_branch",
+      "description": "Generate a code review branch name based on the provided context.",
+      "arguments": [
+        {
+          "name": "branch_name",
+          "description": "Branch name to review",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

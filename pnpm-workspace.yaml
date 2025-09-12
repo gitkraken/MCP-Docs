@@ -1,0 +1,5 @@
+onlyBuiltDependencies:
+  - esbuild
+
+patchedDependencies:
+  '@modelcontextprotocol/inspector': patches/@modelcontextprotocol__inspector.patch

@@ -1,0 +1,583 @@
+{
+  "tools": [
+    {
+      "name": "git_add_or_commit",
+      "description": "Add file contents to the index (git add <pathspec>) OR record changes to the repository (git commit -m <message> [files...]). Use the 'action' parameter to specify which action to perform.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "description": "The action to perform: 'add' or 'commit'",
+            "enum": [
+              "add",
+              "commit"
+            ],
+            "type": "string"
+          },
+          "directory": {
+            "description": "The directory to run git add or commit in",
+            "type": "string"
+          },
+          "files": {
+            "description": "Optional array of files to add or commit. If omitted, all files are added or all staged changes are committed.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "message": {
+            "description": "The commit message (required if action is 'commit')",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory",
+          "action"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "git_blame",
+      "description": "Show what revision and author last modified each line of a file (git blame <file>).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "directory": {
+            "description": "The directory to run git blame in",
+            "type": "string"
+          },
+          "file": {
+            "description": "The file to blame",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory",
+          "file"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "git_branch",
+      "description": "List or create branches (git branch).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "description": "Git branch action to be executed",
+            "enum": [
+              "create",
+              "list"
+            ],
+            "type": "string"
+          },
+          "branch_name": {
+            "description": "(Optional) Name of the branch to create or delete",
+            "type": "string"
+          },
+          "directory": {
+            "description": "The directory to run git branch in",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory",
+          "action"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "git_checkout",
+      "description": "Switch branches or restore working tree files (git checkout <branch>).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "branch": {
+            "description": "The branch to checkout. This must be a valid branch name without spaces",
+            "type": "string"
+          },
+          "directory": {
+            "description": "The directory to run git checkout in",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory",
+          "branch"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "git_log_or_diff",
+      "description": "Show commit logs or changes between commits (git log --oneline or git diff).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "description": "The action to perform: 'log' for commit logs or 'diff' for changes",
+            "enum": [
+              "log",
+              "diff"
+            ],
+            "type": "string"
+          },
+          "commit": {
+            "description": "Optional commit to compare against HEAD for 'diff', defaults to HEAD",
+            "type": "string"
+          },
+          "directory": {
+            "description": "The directory to run the command in",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory",
+          "action"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "git_push",
+      "description": "Update remote refs along with associated objects (git push).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "directory": {
+            "description": "The directory to run git push in",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "git_stash",
+      "description": "Stash the changes in a dirty working directory (git stash).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "directory": {
+            "description": "The directory to run git stash in",
+            "type": "string"
+          },
+          "name": {
+            "description": "Optional name for the stash (used as the stash message)",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "git_status",
+      "description": "Show the working tree status (git status).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "directory": {
+            "description": "The directory to run git status in",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "git_worktree",
+      "description": "List or add git worktrees (git worktree <action>).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "description": "Git worktree action to be executed",
+            "enum": [
+              "list",
+              "add"
+            ],
+            "type": "string"
+          },
+          "branch": {
+            "description": "(Optional) Existing branch for the new worktree (used for add)",
+            "type": "string"
+          },
+          "directory": {
+            "description": "The directory to run git worktree in",
+            "type": "string"
+          },
+          "path": {
+            "description": "(Optional) Path for the worktree (required for add)",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory",
+          "action"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "gitkraken_workspace_list",
+      "description": " Lists all Gitkraken workspaces",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "issues_add_comment",
+      "description": "Add a comment to an issue",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "comment": {
+            "description": "The text content of the comment",
+            "type": "string"
+          },
+          "issue_id": {
+            "description": "The ID of the issue to comment on",
+            "type": "string"
+          },
+          "provider": {
+            "description": "Specify the issue provider",
+            "enum": [
+              "github",
+              "jira"
+            ],
+            "type": "string"
+          },
+          "repository_name": {
+            "description": "Repository name. This is required for GitHub and GitLab",
+            "type": "string"
+          },
+          "repository_organization": {
+            "description": "Organization name. This is required for GitHub and GitLab",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "issue_id",
+          "comment"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "issues_assigned_to_me",
+      "description": "Fetch issues assigned to the user",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "description": "Optional parameter to specify the page number, defaults to 1",
+            "type": "number"
+          },
+          "provider": {
+            "description": "Specify the issue provider",
+            "enum": [
+              "github",
+              "jira"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "issues_get_detail",
+      "description": "Retrieve detailed information about a specific issue by its unique ID",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "issue_id": {
+            "description": "The ID of the issue to retrieve",
+            "type": "string"
+          },
+          "provider": {
+            "description": "Specify the issue provider",
+            "enum": [
+              "github",
+              "jira"
+            ],
+            "type": "string"
+          },
+          "repository_name": {
+            "description": "Repository name. This is required for GitHub and GitLab",
+            "type": "string"
+          },
+          "repository_organization": {
+            "description": "Organization name. This is required for GitHub and GitLab",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "issue_id"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "pull_request_assigned_to_me",
+      "description": "Search pull requests where you are the assignee, author, or reviewer",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "is_closed": {
+            "description": "Set to true if you want to search for closed pull requests",
+            "type": "boolean"
+          },
+          "page": {
+            "description": "Optional parameter to specify the page number, defaults to 1",
+            "type": "number"
+          },
+          "repository_name": {
+            "description": "Set the repository name of the pull request. Required for Azure DevOps and Bitbucket",
+            "type": "string"
+          },
+          "repository_organization": {
+            "description": "Set the organization name of the pull request. Required for Azure DevOps and Bitbucket",
+            "type": "string"
+          }
+        }
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "pull_request_create_review",
+      "description": "Create a review for a pull request",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "approve": {
+            "description": "Set to true if you want to approve the pull request",
+            "type": "boolean"
+          },
+          "pull_request_id": {
+            "description": "ID of the pull request to create the review for",
+            "type": "string"
+          },
+          "repository_name": {
+            "description": "Set the repository name of the pull request. Required for Azure DevOps and Bitbucket",
+            "type": "string"
+          },
+          "repository_organization": {
+            "description": "Set the organization name of the pull request. Required for Azure DevOps and Bitbucket",
+            "type": "string"
+          },
+          "review": {
+            "description": "Comment to add to the pull request review",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repository_name",
+          "repository_organization",
+          "pull_request_id",
+          "review"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "pull_request_get_comments",
+      "description": "Get all the comments in a pull requests",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "pull_request_id": {
+            "description": "ID of the pull request to add the comment to",
+            "type": "string"
+          },
+          "repository_name": {
+            "description": "Set the repository name of the pull request",
+            "type": "string"
+          },
+          "repository_organization": {
+            "description": "Set the organization name of the pull request",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repository_name",
+          "repository_organization",
+          "pull_request_id"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "pull_request_get_detail",
+      "description": "Get an specific pull request",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "pull_request_files": {
+            "description": "Set to true if you want to retrieve the files changed in the pull request. Not supported by Azure DevOps.",
+            "type": "boolean"
+          },
+          "pull_request_id": {
+            "description": "ID of the pull request to retrieve",
+            "type": "string"
+          },
+          "repository_name": {
+            "description": "Set the repository name of the pull request",
+            "type": "string"
+          },
+          "repository_organization": {
+            "description": "Set the organization name of the pull request",
+            "type": "string"
+          }
+        },
+        "required": [
+          "pull_request_id",
+          "repository_name",
+          "repository_organization"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "repository_get_file_content",
+      "description": "Get file content from a repository",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "description": "File path to retrieve from the repository",
+            "type": "string"
+          },
+          "ref": {
+            "description": "Set the branch, tag, or commit SHA to retrieve the file from",
+            "type": "string"
+          },
+          "repository_name": {
+            "description": "Set the repository name of the pull request. Required for Azure DevOps and Bitbucket",
+            "type": "string"
+          },
+          "repository_organization": {
+            "description": "Set the organization name of the pull request. Required for Azure DevOps and Bitbucket",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repository_name",
+          "repository_organization",
+          "ref",
+          "file_path"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    }
+  ]
+}
