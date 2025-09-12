@@ -104,6 +104,29 @@ Edit that file using your favorite text editor and paste in the following JSON.
 
 Save the file and restart Claude.
 
+#### JetBrains IntelliJ
+
+[JetBrains AI Assistant is required.](https://www.jetbrains.com/ai-assistant/)
+
+Navigate to Go to Settings > Tools > AI Assistant > Model Context Protocol (MCP)
+
+Click  Add to add a new MCP server configuration.
+
+In the New MCP Server dialog, using the dropdown, select **As JSON**. 
+
+Paste the following JSON
+
+```json
+{
+  "mcpServers": {
+    "gitkraken": {
+      "command": "gk",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
 ## Next Steps
 
 Once you are done setting up the MCP server, head over to our [Example Workflows](MCP-example-workflows.md) for inspiration on how to use the MCP server to make your day-to-day tasks easier and less tedious.
