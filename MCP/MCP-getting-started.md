@@ -5,8 +5,6 @@ taxonomy:
   category: MCP
 ---
 
-## Getting Started
-
 Getting started is easy in a variety of ways.
 
 - [GitLens](#gitlens)
