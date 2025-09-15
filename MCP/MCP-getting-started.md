@@ -64,6 +64,8 @@ You can then inspect the list of available MCP servers and tools by making sure 
 
 (/wp-content/uploads//copilot-prompt.png)
 
+**Please Note:** [MCP Tools must be enabled](https://code.visualstudio.com/docs/copilot/customization/mcp-servers#_enable-mcp-support-in-vs-code) in VSCode settings to function.
+
 #### Cursor
 
 Installing an MCP server into Cursor is easy. Using the command palette, select "View: Open MCP Settings".
