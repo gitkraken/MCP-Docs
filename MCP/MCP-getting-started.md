@@ -14,7 +14,7 @@ Getting started is easy in a variety of ways.
 
 With the latest version of [GitLens](https://www.gitkraken.com/gitlens) you can install the MCP Server easily from the command palette in VS Code, Cursor, and other IDEs based on VS Code.
 
-(/wp-content/uploads/install-gitlens.png)
+<img src="/wp-content/uploads/install-gitlens.png" class="help-center-img img-bordered">
 
 You can also install the MCP server using one of these convenient deeplinks:
 
