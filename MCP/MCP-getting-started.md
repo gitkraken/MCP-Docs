@@ -8,7 +8,7 @@ taxonomy:
 Getting started is easy in a variety of ways.
 
 - [GitLens](#gitlens)
-- [GitKraken CLI](#GitKraken CLI)
+- [GitLens](#GitKraken-CLI)
 
 ### GitLens
 
