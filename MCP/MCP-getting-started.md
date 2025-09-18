@@ -8,7 +8,7 @@ taxonomy:
 Getting started is easy in a variety of ways.
 
 - [GitLens](#gitlens)
-- [GitKraken CLI](#gitkraken-cli)
+- [GitKraken CLI](#GitKraken CLI)
 
 ### GitLens
 
@@ -32,7 +32,7 @@ Then, scroll through the list and you will see "MCP Server: GitKraken (bundled w
 
 <img src="/wp-content/uploads/gitlens-bundled-tool.png" class="help-center-img img-bordered">
 
-### GitKraken CLI (gitkraken-cli)
+### GitKraken CLI 
 
 Download the latest release from [https://www.gitkraken.com/cli](https://www.gitkraken.com/cli)
 
