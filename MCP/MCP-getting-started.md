@@ -89,6 +89,8 @@ Then, you will need to add the GitKraken MCP server to the JSON file. You can do
 }
 ```
 
+**Please Note:** [Windows users should have the latest Microsoft Visual C++ Redistributable installed.](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170) 
+
 #### Claude Desktop
 
 Claude's MCP server process is a bit different than the IDEs, but is still fairly simple.
