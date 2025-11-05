@@ -118,6 +118,32 @@ Edit that file using your favorite text editor and paste in the following JSON.
 
 Save the file and restart Claude.
 
+#### Amazon Q Developer
+
+Inside of the Q Chat window, click the 'Configure MCP Server' icon. 
+
+(/wp-content/uploads//q_mcp_config.png)
+
+On the new MCP Servers pane, click the '+' icon on the top right. 
+
+(/wp-content/uploads//q_mcp_add.png)
+
+Please insert the following: 
+
+| Field       | Value       |
+| ----------- | ----------- |
+| Name        | gitkraken   |
+| Transport   | stdio       |
+| Command     | gk          |
+| Arguments   | mcp         |
+
+Click 'Save' to finish adding the MCP server.
+
+After completing the setup, or as you need, you can edit permissions for individual toolsets to either Ask, Always Allow or Deny. By default, Q will always ask in the chat. 
+
+(/wp-content/uploads//q_mcp_perm.png)
+
+
 #### JetBrains IntelliJ
 
 [JetBrains AI Assistant is required.](https://www.jetbrains.com/ai-assistant/)
@@ -140,7 +166,6 @@ Paste the following JSON
   }
 }
 ```
-
 ## Next Steps
 
 Once you are done setting up the MCP server, head over to our [Example Workflows](MCP-example-workflows.md) for inspiration on how to use the MCP server to make your day-to-day tasks easier and less tedious.
