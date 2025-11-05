@@ -214,10 +214,6 @@ After completing the setup, or as you need, you can edit permissions for individ
 
 #### JetBrains IntelliJ
 
-[JetBrains AI Assistant is required.](https://www.jetbrains.com/ai-assistant/)
-
-#### JetBrains IntelliJ
-
 To add the GitKraken MCP Server to **JetBrains IntelliJ**:
 
 > [JetBrains AI Assistant is required.](https://www.jetbrains.com/ai-assistant/)
