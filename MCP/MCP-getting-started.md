@@ -179,11 +179,19 @@ To configure the MCP server in **Claude Desktop**:
 
 Inside of the Q Chat window, click the 'Configure MCP Server' icon. 
 
-(/wp-content/uploads//q_mcp_config.png)
+<figure>
+  <img src="/wp-content/uploads/q_mcp_config.png" class="help-center-img img-bordered" alt="Q Developer configure MCP Server." />
+  <figcaption style="text-align: center; color: #888">Q Developer configure MCP Server.</figcaption>
+</figure>
 
 On the new MCP Servers pane, click the '+' icon on the top right. 
 
-(/wp-content/uploads//q_mcp_add.png)
+<figure>
+  <img src="/wp-content/uploads/q_mcp_add.png" class="help-center-img img-bordered" alt="Q Developer add MCP Server." />
+  <figcaption style="text-align: center; color: #888">Q Developer add MCP server.</figcaption>
+</figure>
+
+
 
 Please insert the following: 
 
@@ -198,7 +206,10 @@ Click 'Save' to finish adding the MCP server.
 
 After completing the setup, or as you need, you can edit permissions for individual toolsets to either Ask, Always Allow or Deny. By default, Q will always ask in the chat. 
 
-(/wp-content/uploads//q_mcp_perm.png)
+<figure>
+  <img src="/wp-content/uploads/q_mcp_perm.png" class="help-center-img img-bordered" alt="Q Developer Permissions per toolset." />
+  <figcaption style="text-align: center; color: #888">Q Developer toolset permissions.</figcaption>
+</figure>
 
 
 #### JetBrains IntelliJ
