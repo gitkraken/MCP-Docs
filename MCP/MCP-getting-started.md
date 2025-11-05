@@ -175,25 +175,27 @@ To configure the MCP server in **Claude Desktop**:
 
 4. Save the file and restart Claude Desktop.
 
+---
+
 #### Amazon Q Developer
 
-Inside of the Q Chat window, click the 'Configure MCP Server' icon. 
+To configure GitKraken MCP in **Amazon Q Developer**:
+
+1. Inside of the Q Chat window, click the 'Configure MCP Server' icon. 
 
 <figure>
   <img src="/wp-content/uploads/q_mcp_config.png" class="help-center-img img-bordered" alt="Q Developer configure MCP Server." />
   <figcaption style="text-align: center; color: #888">Q Developer configure MCP Server.</figcaption>
 </figure>
 
-On the new MCP Servers pane, click the '+' icon on the top right. 
+2. On the new MCP Servers pane, click the '+' icon on the top right. 
 
 <figure>
   <img src="/wp-content/uploads/q_mcp_add.png" class="help-center-img img-bordered" alt="Q Developer add MCP Server." />
   <figcaption style="text-align: center; color: #888">Q Developer add MCP server.</figcaption>
 </figure>
 
-
-
-Please insert the following: 
+3. Please insert the following: 
 
 | Field       | Value       |
 | ----------- | ----------- |
@@ -202,15 +204,16 @@ Please insert the following:
 | Command     | gk          |
 | Arguments   | mcp         |
 
-Click 'Save' to finish adding the MCP server.
+4. Click 'Save' to finish adding the MCP server.
 
-After completing the setup, or as you need, you can edit permissions for individual toolsets to either Ask, Always Allow or Deny. By default, Q will always ask in the chat. 
+5. After completing the setup, or as you need, you can edit permissions for individual toolsets to either Ask, Always Allow or Deny. By default, Q will always ask in the chat. 
 
 <figure>
   <img src="/wp-content/uploads/q_mcp_perm.png" class="help-center-img img-bordered" alt="Q Developer Permissions per toolset." />
   <figcaption style="text-align: center; color: #888">Q Developer toolset permissions.</figcaption>
 </figure>
 
+---
 
 #### JetBrains IntelliJ
 
@@ -233,6 +236,9 @@ To add the GitKraken MCP Server to **JetBrains IntelliJ**:
   }
 }
 ```
+
+---
+
 ## Next Steps
 
 After completing installation, visit our [Example Workflows](/mcp/MCP-example-workflows) to explore how the GitKraken MCP Server can simplify your daily development tasks.
