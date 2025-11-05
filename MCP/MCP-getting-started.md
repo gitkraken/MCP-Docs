@@ -175,7 +175,35 @@ To configure the MCP server in **Claude Desktop**:
 
 4. Save the file and restart Claude Desktop.
 
----
+#### Amazon Q Developer
+
+Inside of the Q Chat window, click the 'Configure MCP Server' icon. 
+
+(/wp-content/uploads//q_mcp_config.png)
+
+On the new MCP Servers pane, click the '+' icon on the top right. 
+
+(/wp-content/uploads//q_mcp_add.png)
+
+Please insert the following: 
+
+| Field       | Value       |
+| ----------- | ----------- |
+| Name        | gitkraken   |
+| Transport   | stdio       |
+| Command     | gk          |
+| Arguments   | mcp         |
+
+Click 'Save' to finish adding the MCP server.
+
+After completing the setup, or as you need, you can edit permissions for individual toolsets to either Ask, Always Allow or Deny. By default, Q will always ask in the chat. 
+
+(/wp-content/uploads//q_mcp_perm.png)
+
+
+#### JetBrains IntelliJ
+
+[JetBrains AI Assistant is required.](https://www.jetbrains.com/ai-assistant/)
 
 #### JetBrains IntelliJ
 
@@ -198,9 +226,6 @@ To add the GitKraken MCP Server to **JetBrains IntelliJ**:
   }
 }
 ```
-
----
-
-### Next Steps
+## Next Steps
 
 After completing installation, visit our [Example Workflows](/mcp/MCP-example-workflows) to explore how the GitKraken MCP Server can simplify your daily development tasks.
