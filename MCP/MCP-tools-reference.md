@@ -1,4 +1,3 @@
-
 ---
 title: Tools Reference
 description: List of Tools accessible to AI/LLMs via the MCP tools/list command

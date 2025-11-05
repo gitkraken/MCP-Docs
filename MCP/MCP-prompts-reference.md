@@ -1,4 +1,3 @@
-
 ---
 title: Prompts Reference
 description: List of Prompts accessible to AI/LLMs via the MCP prompts/list command

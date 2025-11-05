@@ -1,34 +1,55 @@
 ---
 title: Example Workflows
-description: A collection of example workflows that demonstrate how to use the GitKraken MCP (Model Context Protocol) Server to automate common tasks.
+description: A collection of example workflows that demonstrate how to use the GitKraken MCP (Model Context Protocol) Server to automate common development tasks.
 taxonomy:
   category: MCP
 ---
 
-Here are a couple of example workflows that demonstrate how to use the GitKraken MCP (Model Context Protocol) Server to automate common tasks. This is not an exhaustive list, but rather a starting point for you to craft your own workflows.
+<kbd>Last updated: October 2025</kbd>
 
-## Query Jira and/or GitHub for Issues Assigned to You
+Explore these example workflows to learn how the GitKraken MCP (Model Context Protocol) Server can automate everyday development tasks. Use them as inspiration to craft your own time-saving workflows.
 
-Going out to Jira/GitHub/etc just to find issues assigned to you can be a tedious task. To make it easier, simply type into a prompt, `What issues are assigned to me?`.
+### Query Jira and GitHub for Assigned Issues
 
-This will use the `issues_assigned_to_me` tool to query Jira and/or GitHub for issues assigned to you and list them out in the response.
+Manually checking Jira or GitHub for your assigned issues can be tedious. Instead, ask your agent:
 
-## Start Work on a Specific Jira Issue
+```
+What issues are assigned to me?
+```
 
-You can start work on a new task with the prompt `Start work on Jira issue <issue-id>`. Make sure to replace `<issue-id>` the actual issue ID that you are assigned.
+This prompt uses the `issues_assigned_to_me` tool to query Jira and/or GitHub and list all issues assigned to your account.
 
-This will call the `issues_get_detail` tool and pull the issue details, check your workspace, and create a new branch for that specific issue.
+### Start Work on a Jira Issue
 
-Depending on the Agent and model, your IDE may then start modifying your files and then it will call tools like `git_status` and `git_add_or_commit`.
+To start work on a specific task, use the following prompt:
 
-## Debug and Understand History
+```
+Start work on Jira issue <issue-id>
+```
 
-GitLens is a fantastic tool to see details about who changed what, when, and why. But, it relies on devs providing good commit messages and context.
+Replace `<issue-id>` with the actual issue ID.  
+The MCP Server will call the `issues_get_detail` tool, fetch issue details, check your workspace, and create a new branch for that issue.
 
-Instead, you can use the MCP server to do the research for you. find a function and ask `Who last changed the <function-name> function and why?`.
+Depending on your agent and model, your IDE may then modify related files or call tools such as `git_status` and `git_add_or_commit`.
 
-This will call the `git_blame` tool as well as some native git commands to get the details for you.
+### Debug and Understand History
 
-## Next Steps
+While [GitLens](https://www.gitkraken.com/gitlens) helps visualize commit history, it depends on meaningful commit messages. You can use the MCP Server to investigate change history automatically.
 
-Now that you have a better understanding of how to use the MCP server, you can start crafting your own workflows. We recommend checking out the [Tools Reference](MCP-tools-reference.md) to see what tools are available and how to use them. You can also check the [Prompt Reference](MCP-prompt-reference.md) for a list of all the prompts available. Prompts are self-contained workflows that will save you the effort of typing it all out yourself.
+Ask:
+
+```
+Who last changed the <function-name> function and why?
+```
+
+The MCP Server will call the `git_blame` tool and relevant Git commands to gather and summarize context for you.
+
+### Next Steps
+
+Now that you understand how to use the GitKraken MCP Server, explore more workflows:
+
+- Check out the [Tools Reference](/mcp/MCP-tools-reference) for a list of available tools and usage examples.  
+- Visit the [Prompt Reference](/mcp/MCP-prompts-reference) for predefined prompts you can reuse or adapt.  
+
+By combining these tools and prompts, you can build your own automated GitKraken MCP workflows to simplify repetitive development tasks.
+
