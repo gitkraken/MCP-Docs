@@ -181,14 +181,14 @@ To configure the MCP server in **Claude Desktop**:
 
 To configure GitKraken MCP in **Amazon Q Developer**:
 
-1. Inside of the Q Chat window, click the 'Configure MCP Server' icon. 
+1. Inside of the Q Chat window, click the **Configure MCP Server** icon. 
 
 <figure>
   <img src="/wp-content/uploads/q_mcp_config.png" class="help-center-img img-bordered" alt="Q Developer configure MCP Server." />
   <figcaption style="text-align: center; color: #888">Q Developer configure MCP Server.</figcaption>
 </figure>
 
-2. On the new MCP Servers pane, click the '+' icon on the top right. 
+2. On the new MCP Servers pane, click the **+** icon on the top right. 
 
 <figure>
   <img src="/wp-content/uploads/q_mcp_add.png" class="help-center-img img-bordered" alt="Q Developer add MCP Server." />
@@ -204,13 +204,74 @@ To configure GitKraken MCP in **Amazon Q Developer**:
 | Command     | gk          |
 | Arguments   | mcp         |
 
-4. Click 'Save' to finish adding the MCP server.
+4. Click **Save** to finish adding the MCP server.
 
 5. After completing the setup, or as you need, you can edit permissions for individual toolsets to either Ask, Always Allow or Deny. By default, Q will always ask in the chat. 
 
 <figure>
   <img src="/wp-content/uploads/q_mcp_perm.png" class="help-center-img img-bordered" alt="Q Developer Permissions per toolset." />
   <figcaption style="text-align: center; color: #888">Q Developer toolset permissions.</figcaption>
+</figure>
+
+---
+
+#### Kiro IDE 
+
+To add MCP to the **Kiro Agentic IDE**:
+
+1. Click the Kiro icon in the left panel. 
+
+<figure>
+  <img src="/wp-content/uploads/kiro_button.png" class="help-center-img img-bordered" alt="Kiro Chat Icon" />
+  <figcaption style="text-align: center; color: #888">Kiro Icon</figcaption>
+</figure>
+
+2. In the Kiro chat window, at the bottom, navigate to the MCP panel and click the **Open MCP Config** button.
+
+<figure>
+  <img src="/wp-content/uploads/kiro_configure_mcp.png" class="help-center-img img-bordered" alt="Kiro open MCP config" />
+  <figcaption style="text-align: center; color: #888">Kiro MCP Configuration</figcaption>
+</figure>
+
+3. On the **mcp.json** window click **User Config**
+
+4. Below the **uvx** entry (the default kiro environment) please add the following and save:
+
+```json
+"gitkraken": {
+      "command": "gk",
+      "args": ["mcp"],
+      "env": {},
+      "disabled": false,
+      "autoApprove": []
+    }
+```
+Your final json should look like the following: 
+
+```json
+{
+  "mcpServers": {
+    "fetch": {
+      "command": "uvx", 
+      "args": ["mcp-server-fetch"],
+      "env": {},
+      "disabled": true,
+      "autoApprove": []
+    },
+    "gitkraken": {
+      "command": "gk",
+      "args": ["mcp"],
+      "env": {},
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
+```
+
+<figure>
+  <img src="/wp-content/uploads/kiro_final_settings.png" class="help-center-img img-bordered" alt="Kiro final JSON settings" />
+  <figcaption style="text-align: center; color: #888">Kiro MCP JSON example</figcaption>
 </figure>
 
 ---
