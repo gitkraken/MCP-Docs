@@ -66,6 +66,8 @@ Once authenticated, add the MCP server to your preferred agent.
 
 ---
 
+### Third Party Tools Manual Setup 
+
 #### VS Code
 
 To install the MCP server in **VS Code**, use the command palette:
@@ -299,6 +301,52 @@ To add the GitKraken MCP Server to **JetBrains IntelliJ**:
 ```
 
 ---
+
+#### Google Antigravity
+
+To add the GitKraken MCP server to **Google Antigravity IDE**:
+
+1. Navigate to the agent pane, located to the right of the workspace, and click the ellipsis **...**.
+2. Select **MCP Servers** from the drop down. 
+
+<figure>
+  <img src="/wp-content/uploads/antigravity-mcp-server.png" class="help-center-img img-bordered" alt="Antigravity MCP server" />
+  <figcaption style="text-align: center; color: #888">Antigravity MCP Servers</figcaption>
+</figure>
+
+3. Remaining in the agent pane, click **Manage MCP Servers**.
+
+<figure>
+  <img src="/wp-content/uploads/antigravity-manage-mcp.png" class="help-center-img img-bordered" alt="Antigravity Manage MCP Servers" />
+  <figcaption style="text-align: center; color: #888">Antigravity Manage MCP Servers</figcaption>
+</figure>
+
+4. On the new Manage MCPs file window, in the middle pane, click **View raw config**.
+
+<figure>
+  <img src="/wp-content/uploads/antigravity-view-raw.png" class="help-center-img img-bordered" alt="Antigravity View raw config" />
+  <figcaption style="text-align: center; color: #888">Antigravity View raw config</figcaption>
+</figure>
+
+5. Paste the following json to the config file. 
+
+```json
+{
+  "mcpServers": {
+    "gitkraken": {
+      "command": "gk",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+6. Verify the GitKraken MCP Tools are enabled. 
+
+<figure>
+  <img src="/wp-content/uploads/antigravity-gitkraken-enabled.png" class="help-center-img img-bordered" alt="Antigravity GitKraken Server Enabled" />
+  <figcaption style="text-align: center; color: #888">Antigravity GitKraken Tools Enabled</figcaption>
+</figure>
+
 
 ## Next Steps
 
