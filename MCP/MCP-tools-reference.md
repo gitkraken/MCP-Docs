@@ -62,6 +62,26 @@ List or add git worktrees (git worktree <action>).
  Lists all Gitkraken workspaces
 
 
+### gitlens_commit_composer
+
+Opens [commit composer](https://www.gitkraken.com/blog/gitlens-17-2-commit-composer-streamlined-ux-and-enterprise-controls) in GitLens
+
+
+### gitlens_launchpad
+
+Opens [Launchpad](https://help.gitkraken.com/gitlens/gl-launchpad/) in GitLens
+
+
+### gitlens_start_review
+
+Get PR details, open a new worktree+window, open diff view, start agent on review
+
+
+### gitlens_start_work
+
+Get Issue details, open a new worktree+window, start agent on work
+
+
 ### issues_add_comment
 
 Add a comment to an issue
