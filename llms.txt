@@ -1,0 +1,12 @@
+# GitKraken MCP Documentation
+
+> Official documentation for the GitKraken Model Context Protocol (MCP) Server — a tool that connects AI agents and IDEs to GitKraken's git, issue tracking, and pull request workflows via the MCP standard.
+
+The GitKraken MCP Server can be installed via GitLens (bundled, no setup required) or the GitKraken CLI. It exposes tools and prompts that allow AI agents to perform git operations, manage issues, review pull requests, and more across GitHub, GitLab, Jira, and Azure DevOps.
+
+## Documentation
+
+- [Getting Started](https://help.gitkraken.com/mcp/MCP-getting-started/): Install the GitKraken MCP Server in GitLens, VS Code, Cursor, Claude Desktop, Amazon Q Developer, Kiro, JetBrains IntelliJ, and Google Antigravity.
+- [Example Workflows](https://help.gitkraken.com/mcp/MCP-example-workflows/): Common workflows including querying assigned issues, starting work on Jira tickets, and debugging git history.
+- [Tools Reference](https://help.gitkraken.com/mcp/MCP-tools-reference/): Full list of MCP tools accessible via the tools/list command, covering git operations, GitLens actions, issues, and pull requests.
+- [Prompts Reference](https://help.gitkraken.com/mcp/MCP-prompts-reference/): Predefined MCP prompts accessible via the prompts/list command.
