@@ -5,7 +5,7 @@ taxonomy:
   category: MCP
 ---
 
-<kbd>Last updated: October 2025</kbd>
+<kbd>Last updated: February 2026</kbd>
 
 You can install the GitKraken MCP Server through GitLens or the GitKraken CLI. This guide walks you through installation in supported IDEs.
 

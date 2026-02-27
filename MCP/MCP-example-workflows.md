@@ -5,7 +5,7 @@ taxonomy:
   category: MCP
 ---
 
-<kbd>Last updated: October 2025</kbd>
+<kbd>Last updated: February 2026</kbd>
 
 Explore these example workflows to learn how the GitKraken MCP (Model Context Protocol) Server can automate everyday development tasks. Use them as inspiration to craft your own time-saving workflows.
 
