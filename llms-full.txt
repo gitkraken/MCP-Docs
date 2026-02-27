@@ -228,95 +228,47 @@ Last updated: February 2026
 
 Tools are a fundamental part of the MCP ecosystem. They are the building blocks of the GitKraken Model Context Protocol (MCP) and allow you to interact with git and the integrations you have set up such as GitHub, GitLab, Jira, and Azure DevOps.
 
-You can enable/disable them specifically within your chosen AI IDE/Agent.
+You can enable/disable them specifically within your chosen AI IDE/Agent. This list will change over time as we add more tools and consolidate the existing ones.
 
-## git_add_or_commit
+## Git Tools
 
-Add file contents to the index (git add <pathspec>) OR record changes to the repository (git commit -m <message> [files...]). Use the 'action' parameter to specify which action to perform.
+- git_add_or_commit: Add file contents to the index (`git add <pathspec>`) or commit changes (`git commit -m <message> [files...]`). Use the `action` parameter to specify which operation to perform.
+- git_blame: Show what revision and author last modified each line of a file (`git blame <file>`).
+- git_branch: List or create branches (`git branch`).
+- git_checkout: Switch branches or restore working tree files (`git checkout <branch>`).
+- git_log_or_diff: Show commit logs or changes between commits (`git log --oneline` or `git diff`).
+- git_push: Update remote refs along with associated objects (`git push`).
+- git_stash: Stash the changes in a dirty working directory (`git stash`).
+- git_status: Show the working tree status (`git status`).
+- git_worktree: List or add git worktrees (`git worktree <action>`).
 
-## git_blame
+## GitKraken Tools
 
-Show what revision and author last modified each line of a file (git blame <file>).
+- gitkraken_workspace_list: Lists all GitKraken workspaces.
 
-## git_branch
+## GitLens Tools
 
-List or create branches (git branch).
+- gitlens_commit_composer: Opens commit composer in GitLens.
+- gitlens_launchpad: Opens Launchpad in GitLens.
+- gitlens_start_review: Gets PR details, opens a new worktree and window, opens the diff view, and starts an agent on review.
+- gitlens_start_work: Gets issue details, opens a new worktree and window, and starts an agent on work.
 
-## git_checkout
+## Issues Tools
 
-Switch branches or restore working tree files (git checkout <branch>).
+- issues_add_comment: Add a comment to an issue.
+- issues_assigned_to_me: Fetch all issues assigned to the current user.
+- issues_get_detail: Retrieve detailed information about a specific issue by its unique ID.
 
-## git_log_or_diff
+## Pull Request Tools
 
-Show commit logs or changes between commits (git log --oneline or git diff).
+- pull_request_assigned_to_me: Search pull requests where you are the assignee, author, or reviewer.
+- pull_request_create_review: Create a review for a pull request.
+- pull_request_get_comments: Get all comments on a pull request.
+- pull_request_get_detail: Get details for a specific pull request.
 
-## git_push
+## Repository Tools
 
-Update remote refs along with associated objects (git push).
-
-## git_stash
-
-Stash the changes in a dirty working directory (git stash).
-
-## git_status
-
-Show the working tree status (git status).
-
-## git_worktree
-
-List or add git worktrees (git worktree <action>).
-
-## gitkraken_workspace_list
-
-Lists all GitKraken workspaces.
-
-## gitlens_commit_composer
-
-Opens commit composer in GitLens.
-
-## gitlens_launchpad
-
-Opens Launchpad in GitLens.
-
-## gitlens_start_review
-
-Get PR details, open a new worktree+window, open diff view, start agent on review.
-
-## gitlens_start_work
-
-Get Issue details, open a new worktree+window, start agent on work.
-
-## issues_add_comment
-
-Add a comment to an issue.
-
-## issues_assigned_to_me
-
-Fetch issues assigned to the user.
-
-## issues_get_detail
-
-Retrieve detailed information about a specific issue by its unique ID.
-
-## pull_request_assigned_to_me
-
-Search pull requests where you are the assignee, author, or reviewer.
-
-## pull_request_create_review
-
-Create a review for a pull request.
-
-## pull_request_get_comments
-
-Get all the comments in a pull request.
-
-## pull_request_get_detail
-
-Get a specific pull request.
-
-## repository_get_file_content
-
-Get file content from a repository.
+- repository_get_file_content: Get file content from a repository.
 
 ---
 
@@ -327,8 +279,8 @@ Last updated: February 2026
 
 Prompts are a higher level feature of the Model Context Protocol (MCP). They help you save time on repetitive tasks by bundling preconfigured text prompts that also help enforce the usage of specific tools at the right time for the right workflow.
 
-You can think of them as bundled workflows that help save you typing time when prompting.
+You can think of them as bundled workflows that help save you typing time when prompting. This list will change over time as we add more prompts and fine-tune the existing ones.
 
-## code_review_branch
+## Code Review Prompts
 
-Generate a code review branch name based on the provided context.
+- code_review_branch: Generate a code review branch name based on the provided context.
