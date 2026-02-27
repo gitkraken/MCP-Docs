@@ -1,0 +1,334 @@
+# GitKraken MCP Documentation
+
+> Official documentation for the GitKraken Model Context Protocol (MCP) Server — a tool that connects AI agents and IDEs to GitKraken's git, issue tracking, and pull request workflows via the MCP standard.
+
+The GitKraken MCP Server can be installed via GitLens (bundled, no setup required) or the GitKraken CLI. It exposes tools and prompts that allow AI agents to perform git operations, manage issues, review pull requests, and more across GitHub, GitLab, Jira, and Azure DevOps.
+
+---
+
+# Getting Started with the GitKraken MCP Server
+
+URL: https://help.gitkraken.com/mcp/MCP-getting-started/
+Last updated: February 2026
+
+You can install the GitKraken MCP Server through GitLens or the GitKraken CLI. This guide walks you through installation in supported IDEs.
+
+## Install via GitLens
+
+The GitKraken MCP Server is bundled with GitLens for VS Code version 1.101.0 and later. No manual setup is required.
+
+If you're using an older version of VS Code (prior to 1.101.0), install the MCP Server from the command palette in VS Code, Cursor, Windsurf, or other VS Code-based IDEs.
+
+You can also install the MCP Server directly using the following deeplinks:
+- VS Code: https://gitkraken.dev/deeplink?product=gitlens&path=/link/command/install-mcp&ide=vscode
+- VS Code Insiders: https://gitkraken.dev/deeplink?product=gitlens&path=/link/command/install-mcp&ide=vscode-insiders
+- Cursor: https://gitkraken.dev/deeplink?product=gitlens&path=/link/command/install-mcp&ide=cursor
+- Windsurf: https://gitkraken.dev/deeplink?product=gitlens&path=/link/command/install-mcp&ide=windsurf
+- Trae: https://gitkraken.dev/deeplink?product=gitlens&path=/link/command/install-mcp&ide=trae
+
+Each link handles all required configuration automatically.
+
+### Verify installation
+
+1. Ensure you are in Agent Mode.
+2. Click the gear icon in the lower-right corner of the Copilot side panel.
+3. Scroll through the list of available MCP servers.
+4. Locate "MCP Server: GitKraken (bundled with GitLens)".
+
+## GitKraken CLI
+
+You can also install the GitKraken MCP Server using the GitKraken CLI. After installation, run the following command to authenticate:
+
+```
+gk auth login
+```
+
+Once authenticated, add the MCP server to your preferred agent.
+
+## Third Party Tools Manual Setup
+
+### VS Code
+
+1. Open the command palette and select "MCP: Add server..."
+2. When prompted, select "stdio" as the server type.
+3. Enter the following command: `gk mcp`
+4. Provide a name for the server and press Enter.
+5. To verify, make sure you are in Agent Mode, then click the gear icon in the Copilot side panel.
+
+Note: MCP Tools must be enabled in VS Code settings for the server to function.
+
+### Cursor
+
+1. Open the command palette and select "View: Open MCP Settings".
+2. If no servers are installed, click "Add Custom MCP".
+3. Add the following configuration to the JSON file:
+
+```json
+{
+  "mcpServers": {
+    "gitkraken": {
+      "command": "gk",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+Note: Windows users must have the latest Microsoft Visual C++ Redistributable installed.
+
+### Claude Desktop
+
+1. From the app toolbar, open Settings, then navigate to the Developer tab.
+2. Click "Edit Config" to open the claude_desktop_config.json directory.
+3. Edit the file and paste in the following JSON:
+
+```json
+{
+  "mcpServers": {
+    "gitkraken": {
+      "command": "gk",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+4. Save the file and restart Claude Desktop.
+
+### Amazon Q Developer
+
+1. Inside the Q Chat window, click the Configure MCP Server icon.
+2. On the new MCP Servers pane, click the + icon on the top right.
+3. Insert the following:
+   - Name: gitkraken
+   - Transport: stdio
+   - Command: gk
+   - Arguments: mcp
+4. Click Save.
+5. Edit permissions for individual toolsets to Ask, Always Allow, or Deny as needed.
+
+### Kiro IDE
+
+1. Click the Kiro icon in the left panel.
+2. In the Kiro chat window, navigate to the MCP panel and click "Open MCP Config".
+3. On the mcp.json window click "User Config".
+4. Add the following configuration and save:
+
+```json
+{
+  "mcpServers": {
+    "fetch": {
+      "command": "uvx",
+      "args": ["mcp-server-fetch"],
+      "env": {},
+      "disabled": true,
+      "autoApprove": []
+    },
+    "gitkraken": {
+      "command": "gk",
+      "args": ["mcp"],
+      "env": {},
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
+```
+
+### JetBrains IntelliJ
+
+JetBrains AI Assistant is required.
+
+1. Navigate to Settings > Tools > AI Assistant > Model Context Protocol (MCP).
+2. Click Add to create a new MCP server configuration.
+3. In the dialog, select "As JSON" from the dropdown.
+4. Paste the following configuration:
+
+```json
+{
+  "mcpServers": {
+    "gitkraken": {
+      "command": "gk",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+### Google Antigravity
+
+1. Navigate to the agent pane and click the ellipsis (...).
+2. Select "MCP Servers" from the dropdown.
+3. Click "Manage MCP Servers".
+4. In the Manage MCPs file window, click "View raw config".
+5. Paste the following configuration:
+
+```json
+{
+  "mcpServers": {
+    "gitkraken": {
+      "command": "gk",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+6. Verify the GitKraken MCP Tools are enabled.
+
+---
+
+# Example Workflows
+
+URL: https://help.gitkraken.com/mcp/MCP-example-workflows/
+Last updated: February 2026
+
+Explore these example workflows to learn how the GitKraken MCP Server can automate everyday development tasks.
+
+## Query Jira and GitHub for Assigned Issues
+
+Manually checking Jira or GitHub for your assigned issues can be tedious. Instead, ask your agent:
+
+```
+What issues are assigned to me?
+```
+
+This prompt uses the `issues_assigned_to_me` tool to query Jira and/or GitHub and list all issues assigned to your account.
+
+## Start Work on a Jira Issue
+
+To start work on a specific task, use the following prompt:
+
+```
+Start work on Jira issue <issue-id>
+```
+
+Replace `<issue-id>` with the actual issue ID. The MCP Server will call the `issues_get_detail` tool, fetch issue details, check your workspace, and create a new branch for that issue.
+
+Depending on your agent and model, your IDE may then modify related files or call tools such as `git_status` and `git_add_or_commit`.
+
+## Debug and Understand History
+
+While GitLens helps visualize commit history, it depends on meaningful commit messages. You can use the MCP Server to investigate change history automatically.
+
+Ask:
+
+```
+Who last changed the <function-name> function and why?
+```
+
+The MCP Server will call the `git_blame` tool and relevant Git commands to gather and summarize context for you.
+
+---
+
+# Tools Reference
+
+URL: https://help.gitkraken.com/mcp/MCP-tools-reference/
+Last updated: February 2026
+
+Tools are a fundamental part of the MCP ecosystem. They are the building blocks of the GitKraken Model Context Protocol (MCP) and allow you to interact with git and the integrations you have set up such as GitHub, GitLab, Jira, and Azure DevOps.
+
+You can enable/disable them specifically within your chosen AI IDE/Agent.
+
+## git_add_or_commit
+
+Add file contents to the index (git add <pathspec>) OR record changes to the repository (git commit -m <message> [files...]). Use the 'action' parameter to specify which action to perform.
+
+## git_blame
+
+Show what revision and author last modified each line of a file (git blame <file>).
+
+## git_branch
+
+List or create branches (git branch).
+
+## git_checkout
+
+Switch branches or restore working tree files (git checkout <branch>).
+
+## git_log_or_diff
+
+Show commit logs or changes between commits (git log --oneline or git diff).
+
+## git_push
+
+Update remote refs along with associated objects (git push).
+
+## git_stash
+
+Stash the changes in a dirty working directory (git stash).
+
+## git_status
+
+Show the working tree status (git status).
+
+## git_worktree
+
+List or add git worktrees (git worktree <action>).
+
+## gitkraken_workspace_list
+
+Lists all GitKraken workspaces.
+
+## gitlens_commit_composer
+
+Opens commit composer in GitLens.
+
+## gitlens_launchpad
+
+Opens Launchpad in GitLens.
+
+## gitlens_start_review
+
+Get PR details, open a new worktree+window, open diff view, start agent on review.
+
+## gitlens_start_work
+
+Get Issue details, open a new worktree+window, start agent on work.
+
+## issues_add_comment
+
+Add a comment to an issue.
+
+## issues_assigned_to_me
+
+Fetch issues assigned to the user.
+
+## issues_get_detail
+
+Retrieve detailed information about a specific issue by its unique ID.
+
+## pull_request_assigned_to_me
+
+Search pull requests where you are the assignee, author, or reviewer.
+
+## pull_request_create_review
+
+Create a review for a pull request.
+
+## pull_request_get_comments
+
+Get all the comments in a pull request.
+
+## pull_request_get_detail
+
+Get a specific pull request.
+
+## repository_get_file_content
+
+Get file content from a repository.
+
+---
+
+# Prompts Reference
+
+URL: https://help.gitkraken.com/mcp/MCP-prompts-reference/
+Last updated: February 2026
+
+Prompts are a higher level feature of the Model Context Protocol (MCP). They help you save time on repetitive tasks by bundling preconfigured text prompts that also help enforce the usage of specific tools at the right time for the right workflow.
+
+You can think of them as bundled workflows that help save you typing time when prompting.
+
+## code_review_branch
+
+Generate a code review branch name based on the provided context.
