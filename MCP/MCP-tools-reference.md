@@ -11,6 +11,21 @@ Tools are a fundamental part of the MCP ecosystem. They are the building blocks 
 
 You can enable/disable them specifically within your chosen AI IDE/Agent. This list will change over time as we add more tools and consolidate the existing ones.
 
+## Quick Start
+
+The GitKraken MCP Server exposes tools that AI agents access via the `tools/list` MCP command. These tools cover git operations, GitLens workflows, issue tracking, and pull request management across GitHub, GitLab, Jira, and Azure DevOps.
+
+Tools are organized into the following categories:
+
+- **Git**: Stage files, commit, view blame, manage branches, checkout, log or diff, push, stash, check status, and manage worktrees.
+- **GitKraken**: List workspaces.
+- **GitLens**: Open Commit Composer, open Launchpad, start work on an issue, start a PR review.
+- **Issues**: Add comments, fetch assigned issues, retrieve issue details.
+- **Pull Requests**: Find assigned PRs, create reviews, retrieve comments, retrieve PR details.
+- **Repository**: Get file content.
+
+You can enable or disable individual tools in your AI IDE or agent configuration. To see these tools applied in practice, refer to the [Example Workflows](/mcp/MCP-example-workflows) page.
+
 ## Summary
 
 | Tool | Category | Description |

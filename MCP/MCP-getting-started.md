@@ -12,6 +12,25 @@ You can install the GitKraken MCP Server through GitLens or the GitKraken CLI. T
 - [Install via GitLens](#install-via-gitlens)
 - [GitKraken CLI](#gitkraken-cli)
 
+## Quick Start
+
+The fastest way to install the GitKraken MCP Server is through GitLens in VS Code. GitLens version 1.101.0 and later bundles the server automatically with no manual configuration required.
+
+To install and verify the GitKraken MCP Server via GitLens:
+
+1. Install or update [GitLens](https://www.gitkraken.com/gitlens) to version 1.101.0 or later in VS Code.
+2. Switch to Agent Mode in the Copilot side panel.
+3. Click the gear icon in the lower-right corner of the panel.
+4. Confirm that "MCP Server: GitKraken (bundled with GitLens)" appears in the server list.
+
+To use the GitKraken CLI instead, authenticate first:
+
+```bash
+gk auth login
+```
+
+Then add the server to your preferred agent using the `gk mcp` command. Supported IDEs include VS Code, Cursor, Claude Desktop, Amazon Q Developer, Kiro, JetBrains IntelliJ, and Google Antigravity. Each requires a one-time stdio transport configuration. See the sections below for IDE-specific steps.
+
 ### Install via GitLens
 
 The GitKraken MCP Server is bundled with [GitLens](https://www.gitkraken.com/gitlens) for VS Code version `1.101.0` and later. **No manual setup is required.**
@@ -351,3 +370,12 @@ To add the GitKraken MCP server to **Google Antigravity IDE**:
 ## Next Steps
 
 After completing installation, visit our [Example Workflows](/mcp/MCP-example-workflows) to explore how the GitKraken MCP Server can simplify your daily development tasks.
+
+<style>
+pre{position:relative;min-height:3.5em}
+.copy-btn{position:absolute;top:8px;right:8px;padding:2px 8px;font-size:11px;font-family:sans-serif;background:rgba(128,128,128,.15);border:1px solid rgba(128,128,128,.25);border-radius:4px;cursor:pointer;color:#aaa;opacity:0;transition:opacity .15s,background .15s,color .15s;line-height:1.5;z-index:1}
+pre:hover .copy-btn{opacity:1}
+.copy-btn:hover{background:rgba(128,128,128,.3);color:#ddd}
+.copy-btn.copied{color:#22c55e;border-color:rgba(34,197,94,.4)}
+</style>
+<script>(function(){function cp(t){if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(t);var x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;opacity:0';document.body.appendChild(x);x.select();try{document.execCommand('copy')}catch(e){}document.body.removeChild(x);return Promise.resolve()}function init(){document.querySelectorAll('pre').forEach(function(p){if(p.querySelector('.copy-btn'))return;var b=document.createElement('button');b.className='copy-btn';b.setAttribute('aria-label','Copy code');b.textContent='Copy';p.appendChild(b);b.addEventListener('click',function(){var el=p.querySelector('code')||p;cp(el.innerText.replace(/\n$/,'')).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},2000)})})})}document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init):init()})()</script>
