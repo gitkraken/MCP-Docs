@@ -16,7 +16,10 @@ taxonomy:
 
 These example workflows show how an AI agent uses the **GitKraken MCP Server** to perform common Git and project management tasks, including querying assigned issues, starting work on a ticket, and investigating change history. Each workflow shows the agent prompt and the tools called.
 
-> **Requirements:** Pro or higher plan · [GitKraken CLI](https://www.gitkraken.com/cli) installed and authenticated (`gk auth login`) · GitHub or Jira integration configured in GitKraken for issue-related workflows (Advanced or higher for Jira Data Center)
+> **Requirements:**
+> - Pro or higher plan
+> - [GitKraken CLI](https://www.gitkraken.com/cli) installed and authenticated (`gk auth login`)
+> - GitHub or Jira integration configured in GitKraken for issue-related workflows (Advanced or higher for Jira Data Center)
 
 | Workflow | Tools Called | Integration Required |
 |---|---|---|

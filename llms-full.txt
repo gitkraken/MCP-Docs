@@ -39,11 +39,7 @@ IDE comparison:
 | JetBrains IntelliJ   | CLI (manual JSON)           | JetBrains AI Assistant           |
 | Google Antigravity   | CLI (manual JSON)           | gk CLI authenticated             |
 
-To verify the GitKraken MCP Server is active after updating GitLens:
-
-1. Open the Copilot side panel and switch to Agent Mode.
-2. Run a test prompt: "What issues are assigned to me?" If the server is running, you'll see an approval request for the issues_assigned_to_me tool.
-3. If no approval appears, click the tools icon in the Agent Mode toolbar and confirm MCP Server: GitKraken is listed. If it is not listed, follow the manual install steps in Install via GitLens below.
+Once updated, see Verify installation below to confirm the server is active.
 
 To use the GitKraken CLI instead, authenticate first:
 

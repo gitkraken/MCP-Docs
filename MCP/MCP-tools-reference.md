@@ -34,7 +34,11 @@ Tools are organized into the following categories:
 
 You can enable or disable individual tools in your AI IDE or agent configuration. To see these tools applied in practice, refer to the [Example Workflows](/mcp/MCP-example-workflows) page.
 
-> **Requirements:** [GitKraken CLI](https://www.gitkraken.com/cli) installed and authenticated (`gk auth login`) · **Pro or higher** for Issues, Pull Request, and private repo tools · **Advanced or higher** for enterprise Git and issue tracker integrations · [GitLens](https://www.gitkraken.com/gitlens) 1.101.0 or later for GitLens tools
+> **Requirements:**
+> - [GitKraken CLI](https://www.gitkraken.com/cli) installed and authenticated (`gk auth login`)
+> - **Pro or higher** for Issues, Pull Request, and private repo tools
+> - **Advanced or higher** for enterprise Git and issue tracker integrations
+> - [GitLens](https://www.gitkraken.com/gitlens) 1.101.0 or later for GitLens tools
 
 ***
 
