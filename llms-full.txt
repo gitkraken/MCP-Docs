@@ -129,7 +129,9 @@ Option B: Manual JSON config:
 
 Note: Windows users must have the latest Microsoft Visual C++ Redistributable installed.
 
-### Claude Desktop
+#### Claude Desktop
+
+To configure the GitKraken MCP Server in Claude Desktop:
 
 1. From the app toolbar, open Settings, then navigate to the Developer tab.
 2. Click "Edit Config" to open the claude_desktop_config.json directory.
@@ -148,7 +150,9 @@ Note: Windows users must have the latest Microsoft Visual C++ Redistributable in
 
 4. Save the file and restart Claude Desktop.
 
-### Amazon Q Developer
+#### Amazon Q Developer
+
+To configure GitKraken MCP in Amazon Q Developer:
 
 1. Inside the Q Chat window, click the Configure MCP Server icon.
 2. On the new MCP Servers pane, click the + icon on the top right.
@@ -160,7 +164,9 @@ Note: Windows users must have the latest Microsoft Visual C++ Redistributable in
 4. Click Save.
 5. Edit permissions for individual toolsets to Ask, Always Allow, or Deny as needed.
 
-### Kiro IDE
+#### Kiro IDE
+
+To add MCP to the Kiro Agentic IDE:
 
 1. Click the Kiro icon in the left panel.
 2. In the Kiro chat window, navigate to the MCP panel and click "Open MCP Config".
@@ -188,9 +194,11 @@ Note: Windows users must have the latest Microsoft Visual C++ Redistributable in
 }
 ```
 
-### JetBrains IntelliJ
+#### JetBrains IntelliJ
 
 JetBrains AI Assistant is required.
+
+To add the GitKraken MCP Server to JetBrains IntelliJ:
 
 1. Navigate to Settings > Tools > AI Assistant > Model Context Protocol (MCP).
 2. Click Add to create a new MCP server configuration.
@@ -208,7 +216,9 @@ JetBrains AI Assistant is required.
 }
 ```
 
-### Google Antigravity
+#### Google Antigravity
+
+To add the GitKraken MCP Server to Google Antigravity IDE:
 
 1. Navigate to the agent pane and click the ellipsis (...).
 2. Select "MCP Servers" from the dropdown.
@@ -229,16 +239,30 @@ JetBrains AI Assistant is required.
 
 6. Verify the GitKraken MCP Tools are enabled.
 
+## Next Steps
+
+After completing installation, visit our Example Workflows page to see how the GitKraken MCP Server automates Git operations, issue tracking, and pull request workflows directly from your AI agent.
+
 ---
 
 # Example Workflows
 
 URL: https://help.gitkraken.com/mcp/MCP-example-workflows/
-Last updated: February 2026
+Last updated: March 2026
 
-Explore these example workflows to learn how the GitKraken MCP Server can automate everyday development tasks.
+These example workflows show how an AI agent uses the GitKraken MCP Server to perform common Git and project management tasks, including querying assigned issues, starting work on a ticket, and investigating change history. Each workflow shows the agent prompt and the tools called.
 
-## Query Jira and GitHub for Assigned Issues
+Requirements: Pro or higher plan. GitKraken CLI installed and authenticated (gk auth login). GitHub or Jira integration configured in GitKraken for issue-related workflows (Advanced or higher for Jira Data Center).
+
+| Workflow                              | Tools Called                                    | Integration Required |
+|---------------------------------------|-------------------------------------------------|----------------------|
+| Query assigned issues                 | issues_assigned_to_me                           | Jira or GitHub       |
+| Start work on a Jira issue            | issues_get_detail, git_branch, git_checkout     | Jira                 |
+| Debug and understand history          | git_blame                                       | Any Git repo         |
+
+### Query Jira and GitHub for Assigned Issues
+
+Use this when you want a unified view of issues assigned to you across Jira and/or GitHub without switching between tools.
 
 Manually checking Jira or GitHub for your assigned issues can be tedious. Instead, ask your agent:
 
