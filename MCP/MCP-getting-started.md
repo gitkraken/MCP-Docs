@@ -103,7 +103,7 @@ Each link handles all required configuration automatically.
 
 ***
 
-## GitKraken CLI
+## Install via GitKraken CLI
 
 You can also install the GitKraken MCP Server using the [GitKraken CLI](https://www.gitkraken.com/cli). Follow these steps to set up the MCP Server across different IDEs.
 
