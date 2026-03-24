@@ -38,8 +38,11 @@ The prompt returns a branch name string your agent can use with `git_checkout` o
 
 ---
 
-## Code Review Prompts
+## Generate Code Review Branch Names
 
 ### code_review_branch
 
-Generate a code review branch name based on the provided context.
+Generate a code review branch name. Provide the PR title, issue number, or a brief description of the changes being reviewed. Returns a branch name string.
+
+> **Use this when** you want a consistently named review branch and your team uses a naming convention based on the PR title or issue number.
+> **Use `git_branch` directly when** you already know the exact branch name you want.
