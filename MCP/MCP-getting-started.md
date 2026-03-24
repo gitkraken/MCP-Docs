@@ -1,29 +1,54 @@
 ---
 title: Getting Started with the GitKraken MCP Server
 description: Learn how to install the GitKraken MCP Server in GitLens, VS Code, and other supported editors.
+product: "GitKraken MCP Server"
+content_type: "install"
+audience: "developer"
+plan_required: "all"
+status: "GA"
+last_verified: "2026-03"
 taxonomy:
   category: MCP
 ---
 
 <kbd>Last updated: March 2026</kbd>
 
-You can install the GitKraken MCP Server through GitLens or the GitKraken CLI. This guide walks you through installation in supported IDEs.
+The GitKraken MCP Server gives AI agents direct access to your Git operations, issue tracking, and pull request workflows across GitHub, GitLab, Jira, and Azure DevOps. It works from any supported IDE or agent. Install it through GitLens or the GitKraken CLI.
 
 - [Install via GitLens](#install-via-gitlens)
-- [GitKraken CLI](#gitkraken-cli)
+- [Install via GitKraken CLI](#install-via-gitkraken-cli)
 
 ***
 
 ## Quick Start
 
-The fastest way to install the GitKraken MCP Server is through GitLens in VS Code. GitLens version 1.101.0 and later bundles the server automatically with no manual configuration required.
+The fastest way to install the GitKraken MCP Server is through GitLens in VS Code. In many cases, updating GitLens is all that's needed; the server installs automatically.
 
-To install and verify the GitKraken MCP Server via GitLens:
+> **Requires:** GitLens 1.101.0 or later in VS Code. Earlier versions require manual setup via the command palette. See [Install via GitLens](#install-via-gitlens) below.
 
-1. Install or update [GitLens](https://www.gitkraken.com/gitlens) to version 1.101.0 or later in VS Code.
-2. Switch to Agent Mode in the Copilot side panel.
-3. Click the gear icon in the lower-right corner of the panel.
-4. Confirm that "MCP Server: GitKraken (bundled with GitLens)" appears in the server list.
+**Which install method is right for you?**
+
+- **Use the GitLens path** if you work in VS Code, Cursor, Windsurf, Trae, or another VS Code–based IDE and want zero manual configuration.
+- **Use the GitKraken CLI path** if you work in Claude Desktop, JetBrains IntelliJ, Amazon Q Developer, Kiro, or Google Antigravity, or if you need to configure the server once across multiple agents.
+
+| IDE | Install Method | Prerequisites |
+|---|---|---|
+| VS Code | GitLens (recommended) or CLI | GitLens 1.101.0+ |
+| VS Code Insiders | GitLens deeplink or CLI | GitLens 1.101.0+ |
+| Cursor | GitLens deeplink or CLI | Windows: VC++ Redistributable |
+| Windsurf | GitLens deeplink | None |
+| Trae | GitLens deeplink | None |
+| Claude Desktop | CLI (manual JSON) | gk CLI authenticated |
+| Amazon Q Developer | CLI (form entry) | gk CLI authenticated |
+| Kiro | CLI (manual JSON) | gk CLI authenticated |
+| JetBrains IntelliJ | CLI (manual JSON) | JetBrains AI Assistant |
+| Google Antigravity | CLI (manual JSON) | gk CLI authenticated |
+
+To verify the GitKraken MCP Server is active after updating GitLens:
+
+1. Open the Copilot side panel and switch to **Agent Mode**.
+2. Run a test prompt: `What issues are assigned to me?` If the server is running, you'll see an approval request for the `issues_assigned_to_me` tool.
+3. If no approval appears, click the **tools icon** in the Agent Mode toolbar and confirm **MCP Server: GitKraken** is listed. If it is not listed, follow the manual install steps in [Install via GitLens](#install-via-gitlens) below.
 
 To use the GitKraken CLI instead, authenticate first:
 
@@ -31,22 +56,24 @@ To use the GitKraken CLI instead, authenticate first:
 gk auth login
 ```
 
-Then add the server to your preferred agent using the `gk mcp` command. Supported IDEs include VS Code, Cursor, Claude Desktop, Amazon Q Developer, Kiro, JetBrains IntelliJ, and Google Antigravity. Each requires a one-time stdio transport configuration. See the sections below for IDE-specific steps.
+Then add the **GitKraken MCP Server** to your preferred agent using the `gk mcp` command. Each IDE requires a one-time stdio transport configuration. See the IDE-specific steps below.
 
 ***
 
 ## Install via GitLens
 
-The GitKraken MCP Server is bundled with [GitLens](https://www.gitkraken.com/gitlens) for VS Code version `1.101.0` and later. **No manual setup is required.**
+The GitKraken MCP Server is bundled with [GitLens](https://www.gitkraken.com/gitlens) version `1.101.0` and later. In most cases, updating GitLens is sufficient. The server installs automatically with no additional configuration.
 
-If you’re using an older version of VS Code (prior to `1.101.0`), install the MCP Server from the command palette in VS Code, Cursor, Windsurf, or other VS Code–based IDEs.
+If the server does not install automatically, run the following command from the command palette in VS Code, Cursor, Windsurf, or any other VS Code–based IDE:
+
+**GitLens: Install GitKraken MCP Server**
 
 <figure>
   <img src="/wp-content/uploads/install-gitlens.png" class="help-center-img img-bordered" alt="Install the MCP Server from the command palette in GitLens." />
-  <figcaption style="text-align: center; color: #888">Open the command palette to install the GitKraken MCP Server.</figcaption>
+  <figcaption style="text-align: center; color: #888">Search for "GitLens: Install GitKraken MCP Server" in the command palette.</figcaption>
 </figure>
 
-You can also install the MCP Server directly using the following deeplinks:
+You can also install directly using the following deeplinks. Each link handles all configuration automatically:
 
 - [VS Code](https://gitkraken.dev/deeplink?product=gitlens&path=/link/command/install-mcp&ide=vscode)
 - [VS Code Insiders](https://gitkraken.dev/deeplink?product=gitlens&path=/link/command/install-mcp&ide=vscode-insiders)
@@ -59,15 +86,15 @@ Each link handles all required configuration automatically.
 #### Verify installation
 
 1. Ensure you are in **Agent Mode**.
-2. Click the **gear icon** in the lower-right corner of the Copilot side panel.
+2. Run a test prompt: `What issues are assigned to me?` A working server will display an approval request for the `issues_assigned_to_me` tool.
+3. To inspect all available tools, click the **tools icon** in the Agent Mode toolbar.
 
 <figure>
-  <img src="/wp-content/uploads/copilot-prompt.png" class="help-center-img img-bordered" alt="Copilot gear icon in VS Code for MCP configuration." />
-  <figcaption style="text-align: center; color: #888">Access MCP settings from the Copilot panel gear icon.</figcaption>
+  <img src="/wp-content/uploads/copilot-prompt.png" class="help-center-img img-bordered" alt="Tools icon in VS Code Copilot Agent Mode for MCP configuration." />
+  <figcaption style="text-align: center; color: #888">Click the tools icon in Agent Mode to see all available MCP tools.</figcaption>
 </figure>
 
-3. Scroll through the list of available MCP servers.
-4. Locate **MCP Server: GitKraken (bundled with GitLens)**.
+4. Scroll to the bottom of the list and confirm **MCP Server: GitKraken (bundled with GitLens)** is present.
 
 <figure>
   <img src="/wp-content/uploads/gitlens-bundled-tool.png" class="help-center-img img-bordered" alt="MCP Server: GitKraken listed in bundled GitLens tools." />
@@ -76,7 +103,7 @@ Each link handles all required configuration automatically.
 
 ***
 
-## GitKraken CLI
+## Install via GitKraken CLI
 
 You can also install the GitKraken MCP Server using the [GitKraken CLI](https://www.gitkraken.com/cli). Follow these steps to set up the MCP Server across different IDEs.
 
@@ -86,15 +113,17 @@ After installation, run the following command in your terminal to authenticate w
 gk auth login
 ```
 
-Once authenticated, add the MCP server to your preferred agent.
+Once authenticated, add the **GitKraken MCP Server** to your preferred agent.
 
 ---
 
-### Third Party Tools Manual Setup 
+### Third Party Tools Manual Setup
+
+> **Prerequisites:** The [GitKraken CLI](https://www.gitkraken.com/cli) must be installed and authenticated before configuring any IDE. Run `gk auth login` in your terminal first.
 
 #### VS Code
 
-To install the MCP server in **VS Code**, use the command palette:
+To install the GitKraken MCP Server in **VS Code**, use the command palette:
 
 1. Open the command palette and select **MCP: Add server...**
 
@@ -128,11 +157,11 @@ gk mcp
   <figcaption style="text-align: center; color: #888">Assign a name to the GitKraken MCP Server.</figcaption>
 </figure>
 
-5. To verify, make sure you are in **Agent Mode**, then click the **gear icon** in the lower-right corner of the Copilot side panel.
+5. To verify, make sure you are in **Agent Mode**, then click the **tools icon** in the Agent Mode toolbar to confirm the GitKraken MCP Server appears in the list.
 
 <figure>
-  <img src="/wp-content/uploads/copilot-prompt.png" class="help-center-img img-bordered" alt="Copilot side panel gear icon for MCP settings in VS Code." />
-  <figcaption style="text-align: center; color: #888">Access the list of installed MCP servers from the Copilot panel.</figcaption>
+  <img src="/wp-content/uploads/copilot-prompt.png" class="help-center-img img-bordered" alt="Tools icon in VS Code Copilot Agent Mode for MCP settings." />
+  <figcaption style="text-align: center; color: #888">Click the tools icon in Agent Mode to confirm the GitKraken MCP Server is listed.</figcaption>
 </figure>
 
 > **Note:** [MCP Tools must be enabled](https://code.visualstudio.com/docs/copilot/customization/mcp-servers#_enable-mcp-support-in-vs-code) in VS Code settings for the server to function.
@@ -141,7 +170,13 @@ gk mcp
 
 #### Cursor
 
-To install the MCP server in **Cursor**:
+To install the GitKraken MCP Server in **Cursor**:
+
+**Option A: GitLens command palette (recommended if you have GitLens installed):**
+
+Run **GitLens: Install GitKraken MCP Server** from the command palette. This handles all configuration automatically.
+
+**Option B: Manual JSON config:**
 
 1. Open the command palette and select **View: Open MCP Settings**.
 
@@ -157,7 +192,7 @@ To install the MCP server in **Cursor**:
   <figcaption style="text-align: center; color: #888">Add a new custom MCP server in Cursor.</figcaption>
 </figure>
 
-3. Add the GitKraken MCP server configuration to the JSON file:
+3. Add the GitKraken MCP Server configuration to the JSON file:
 
 ```json
 {
@@ -176,7 +211,7 @@ To install the MCP server in **Cursor**:
 
 #### Claude Desktop
 
-To configure the MCP server in **Claude Desktop**:
+To configure the GitKraken MCP Server in **Claude Desktop**:
 
 1. From the app toolbar, open **Settings**, then navigate to the **Developer** tab.
 
@@ -328,7 +363,7 @@ To add the GitKraken MCP Server to **JetBrains IntelliJ**:
 
 #### Google Antigravity
 
-To add the GitKraken MCP server to **Google Antigravity IDE**:
+To add the GitKraken MCP Server to **Google Antigravity IDE**:
 
 1. Navigate to the agent pane, located to the right of the workspace, and click the ellipsis **...**.
 2. Select **MCP Servers** from the drop down. 
@@ -374,7 +409,7 @@ To add the GitKraken MCP server to **Google Antigravity IDE**:
 
 ## Next Steps
 
-After completing installation, visit our [Example Workflows](/mcp/MCP-example-workflows) to explore how the GitKraken MCP Server can simplify your daily development tasks.
+After completing installation, visit our [Example Workflows](/mcp/MCP-example-workflows) to see how the GitKraken MCP Server automates Git operations, issue tracking, and pull request workflows directly from your AI agent.
 
 <style>
 pre{position:relative;min-height:3.5em}

@@ -1,13 +1,19 @@
 ---
 title: Tools Reference
 description: List of Tools accessible to AI/LLMs via the MCP tools/list command
+product: "GitKraken MCP Server"
+content_type: "reference"
+audience: "agent"
+plan_required: "all"
+status: "GA"
+last_verified: "2026-03"
 taxonomy:
   category: MCP
 ---
 
 <kbd>Last updated: March 2026</kbd>
 
-Tools are a fundamental part of the MCP ecosystem. They are the building blocks of the GitKraken Model Context Protocol (MCP) and allow you to interact with git and the integrations you have set up such as GitHub, GitLab, Jira, and Azure DevOps.
+Tools are a fundamental part of the MCP ecosystem. They are the building blocks of the **GitKraken MCP Server** and allow you to interact with git and the integrations you have set up such as GitHub, GitLab, Jira, and Azure DevOps.
 
 You can enable/disable them specifically within your chosen AI IDE/Agent. This list will change over time as we add more tools and consolidate the existing ones.
 
@@ -19,14 +25,16 @@ The GitKraken MCP Server exposes tools that AI agents access via the `tools/list
 
 Tools are organized into the following categories:
 
-- **Git**: Stage files, commit, view blame, manage branches, checkout, log or diff, push, stash, check status, and manage worktrees.
-- **GitKraken**: List workspaces.
-- **GitLens**: Open Commit Composer, open Launchpad, start work on an issue, start a PR review.
-- **Issues**: Add comments, fetch assigned issues, retrieve issue details.
-- **Pull Requests**: Find assigned PRs, create reviews, retrieve comments, retrieve PR details.
-- **Repository**: Get file content.
+- **Git**: Stage files, commit, view blame, manage branches, checkout, log or diff, push, stash, check status, and manage worktrees. Available on all plans; private remote operations require **Pro or higher**.
+- **GitKraken**: List workspaces. Available on all plans.
+- **GitLens**: Open Commit Composer, open Launchpad, start work on an issue, start a PR review. Requires a [GitLens](https://www.gitkraken.com/gitlens) plan.
+- **Issues**: Add comments, fetch assigned issues, retrieve issue details. Requires **Pro or higher** for cloud issue trackers (GitHub Issues, GitLab, Jira Cloud); **Advanced or higher** for enterprise trackers (Jira Data Center, Azure DevOps Server).
+- **Pull Requests**: Find assigned PRs, create reviews, retrieve comments, retrieve PR details. Requires **Pro or higher**.
+- **Repository**: Get file content. Available on all plans for public repos; **Pro or higher** for private repos.
 
 You can enable or disable individual tools in your AI IDE or agent configuration. To see these tools applied in practice, refer to the [Example Workflows](/mcp/MCP-example-workflows) page.
+
+> **Requirements:** [GitKraken CLI](https://www.gitkraken.com/cli) installed and authenticated (`gk auth login`) · **Pro or higher** for Issues, Pull Request, and private repo tools · **Advanced or higher** for enterprise Git and issue tracker integrations · [GitLens](https://www.gitkraken.com/gitlens) 1.101.0 or later for GitLens tools
 
 ***
 
@@ -59,11 +67,41 @@ You can enable or disable individual tools in your AI IDE or agent configuration
 
 ---
 
-## Git Tools
+## When to Use Which Tool
+
+| I want to… | Use this tool |
+|---|---|
+| See who last changed a specific line | `git_blame` |
+| Review commit history or compare branches/commits | `git_log_or_diff` |
+| Stage files before committing | `git_add_or_commit` (action: `add`) |
+| Commit staged changes with a message | `git_add_or_commit` (action: `commit`) |
+| Start work on an issue (creates branch + worktree) | `gitlens_start_work` |
+| Create or list branches manually | `git_branch` |
+| Switch branches or restore files | `git_checkout` |
+| Review a pull request (diff view + agent workflow) | `gitlens_start_review` |
+| Get pull request details only | `pull_request_get_detail` |
+| Check working directory status | `git_status` |
+| Save work in progress without committing | `git_stash` |
+| Push local commits to a remote | `git_push` |
+| List or create git worktrees | `git_worktree` |
+| List GitKraken workspaces | `gitkraken_workspace_list` |
+| Get file content from a repository | `repository_get_file_content` |
+| Open GitLens Launchpad | `gitlens_launchpad` |
+| Stage and compose a commit in GitLens UI | `gitlens_commit_composer` |
+| Fetch issues assigned to you | `issues_assigned_to_me` |
+| Get details for a specific issue | `issues_get_detail` |
+| Add a comment to an issue | `issues_add_comment` |
+| Find PRs where you are assignee, author, or reviewer | `pull_request_assigned_to_me` |
+| Create a review for a pull request | `pull_request_create_review` |
+| Get all comments on a pull request | `pull_request_get_comments` |
+
+---
+
+## Commit, Branch, and View History
 
 ### git_add_or_commit
 
-Add file contents to the index (`git add <pathspec>`) or record changes to the repository (`git commit -m <message> [files...]`). Use the `action` parameter to specify which operation to perform.
+Add file contents to the index (`git add <pathspec>`) or record changes to the repository (`git commit -m <message> [files...]`). Use the `action` parameter: `add` to stage files, `commit` to record a commit with a message.
 
 ### git_blame
 
@@ -95,11 +133,11 @@ Show the working tree status (`git status`).
 
 ### git_worktree
 
-List or add git worktrees (`git worktree <action>`).
+List or add git worktrees. Use `list` to see all worktrees, or `add` to create a new one.
 
 ---
 
-## GitKraken Tools
+## Access GitKraken Workspaces
 
 ### gitkraken_workspace_list
 
@@ -107,7 +145,7 @@ Lists all GitKraken workspaces.
 
 ---
 
-## GitLens Tools
+## Start Work and Reviews with GitLens
 
 ### gitlens_commit_composer
 
@@ -127,7 +165,7 @@ Gets issue details, opens a new worktree and window, and starts an agent on work
 
 ---
 
-## Issues Tools
+## Query and Comment on Issues
 
 ### issues_add_comment
 
@@ -143,7 +181,7 @@ Retrieve detailed information about a specific issue by its unique ID.
 
 ---
 
-## Pull Request Tools
+## Review and Manage Pull Requests
 
 ### pull_request_assigned_to_me
 
@@ -163,7 +201,7 @@ Get details for a specific pull request.
 
 ---
 
-## Repository Tools
+## Read File Content
 
 ### repository_get_file_content
 
