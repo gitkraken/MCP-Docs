@@ -101,21 +101,23 @@ You can enable or disable individual tools in your AI IDE or agent configuration
 
 ---
 
-<style>table code{white-space:nowrap}</style>
-
 ## Commit, Branch, and View History
 
-| Tool | Description |
-|---|---|
-| `git_add_or_commit` | Add file contents to the index (`git add <pathspec>`) or record changes to the repository (`git commit -m <message> [files...]`). Use the `action` parameter: `add` to stage files, `commit` to record a commit with a message. |
-| `git_blame` | Show what revision and author last modified each line of a file (`git blame <file>`). |
-| `git_branch` | List or create branches (`git branch`). |
-| `git_checkout` | Switch branches or restore working tree files (`git checkout <branch>`). |
-| `git_log_or_diff` | Show commit logs or changes between commits (`git log --oneline` or `git diff`). |
-| `git_push` | Update remote refs along with associated objects (`git push`). |
-| `git_stash` | Stash the changes in a dirty working directory (`git stash`). |
-| `git_status` | Show the working tree status (`git status`). |
-| `git_worktree` | List or add git worktrees. Use `list` to see all worktrees, or `add` to create a new one. |
+<table>
+<colgroup><col style="width:220px"><col></colgroup>
+<thead><tr><th>Tool</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><code>git_add_or_commit</code></td><td>Add file contents to the index (<code>git add &lt;pathspec&gt;</code>) or record changes to the repository (<code>git commit -m &lt;message&gt; [files...]</code>). Use the <code>action</code> parameter: <code>add</code> to stage files, <code>commit</code> to record a commit with a message.</td></tr>
+<tr><td><code>git_blame</code></td><td>Show what revision and author last modified each line of a file (<code>git blame &lt;file&gt;</code>).</td></tr>
+<tr><td><code>git_branch</code></td><td>List or create branches (<code>git branch</code>).</td></tr>
+<tr><td><code>git_checkout</code></td><td>Switch branches or restore working tree files (<code>git checkout &lt;branch&gt;</code>).</td></tr>
+<tr><td><code>git_log_or_diff</code></td><td>Show commit logs or changes between commits (<code>git log --oneline</code> or <code>git diff</code>).</td></tr>
+<tr><td><code>git_push</code></td><td>Update remote refs along with associated objects (<code>git push</code>).</td></tr>
+<tr><td><code>git_stash</code></td><td>Stash the changes in a dirty working directory (<code>git stash</code>).</td></tr>
+<tr><td><code>git_status</code></td><td>Show the working tree status (<code>git status</code>).</td></tr>
+<tr><td><code>git_worktree</code></td><td>List or add git worktrees. Use <code>list</code> to see all worktrees, or <code>add</code> to create a new one.</td></tr>
+</tbody>
+</table>
 
 ---
 
