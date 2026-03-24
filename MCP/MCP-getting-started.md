@@ -22,9 +22,9 @@ The GitKraken MCP Server gives AI agents direct access to your Git operations, i
 
 ## Quick Start
 
-The fastest way to install the GitKraken MCP Server is through GitLens in VS Code. In many cases, updating GitLens is all that's needed; the server installs automatically.
+The fastest way to install the GitKraken MCP Server is through GitLens in VS Code or Cursor. In many cases, updating GitLens is all that's needed; the server installs automatically.
 
-> **Requires:** GitLens 1.101.0 or later in VS Code. Earlier versions require manual setup via the command palette. See [Install via GitLens](#install-via-gitlens) below.
+> **Requires:** VS Code 1.101.0 or later and GitLens 17.5 or later. Earlier versions require manual setup via the command palette. See [Install via GitLens](#install-via-gitlens) below.
 
 **Which install method is right for you?**
 
@@ -33,9 +33,9 @@ The fastest way to install the GitKraken MCP Server is through GitLens in VS Cod
 
 | IDE | Install Method | Prerequisites |
 |---|---|---|
-| VS Code | GitLens (recommended) or CLI | GitLens 1.101.0+ |
-| VS Code Insiders | GitLens deeplink or CLI | GitLens 1.101.0+ |
-| Cursor | GitLens deeplink or CLI | Windows: VC++ Redistributable |
+| VS Code | GitLens (recommended) or CLI | VS Code 1.101.0+, GitLens 17.5+ |
+| VS Code Insiders | GitLens deeplink or CLI | VS Code 1.101.0+, GitLens 17.5+ |
+| Cursor | GitLens (recommended) or CLI | Windows: VC++ Redistributable |
 | Windsurf | GitLens deeplink | None |
 | Trae | GitLens deeplink | None |
 | Claude Desktop | CLI (manual JSON) | gk CLI authenticated |
@@ -58,7 +58,7 @@ Then add the **GitKraken MCP Server** to your preferred agent using the `gk mcp`
 
 ## Install via GitLens
 
-The GitKraken MCP Server is bundled with [GitLens](https://www.gitkraken.com/gitlens) version `1.101.0` and later. In most cases, updating GitLens is sufficient. The server installs automatically with no additional configuration.
+The GitKraken MCP Server is bundled with [GitLens](https://www.gitkraken.com/gitlens) version `17.5` and later. In most cases, updating GitLens is sufficient. The server installs automatically with no additional configuration.
 
 If the server does not install automatically, run the following command from the command palette in VS Code, Cursor, Windsurf, or any other VS Code–based IDE:
 
