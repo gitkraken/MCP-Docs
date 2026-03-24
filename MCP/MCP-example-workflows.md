@@ -38,6 +38,8 @@ This prompt uses the `issues_assigned_to_me` tool to query Jira and/or GitHub an
 
 ### Start Work on a Jira Issue
 
+**Use this when** you want to start work on a Jira ticket and have a properly named branch created automatically. **Use `git_branch` directly when** you already know the exact branch name you want and don't need issue details fetched.
+
 To start work on a specific task, use the following prompt:
 
 ```
@@ -45,13 +47,15 @@ Start work on Jira issue <issue-id>
 ```
 
 Replace `<issue-id>` with the actual issue ID.  
-The MCP Server will call the `issues_get_detail` tool, fetch issue details, check your workspace, and create a new branch for that issue.
+The **GitKraken MCP Server** will call the `issues_get_detail` tool, fetch issue details, check your workspace, and create a new branch for that issue.
 
 Depending on your agent and model, your IDE may then modify related files or call tools such as `git_status` and `git_add_or_commit`.
 
 ### Debug and Understand History
 
-While [GitLens](https://www.gitkraken.com/gitlens) helps visualize commit history, it depends on meaningful commit messages. You can use the MCP Server to investigate change history automatically.
+**Use this when** you need to identify who changed a specific function and why, and want the context summarized automatically. **Use GitLens inline blame instead when** you already know the file and line and want a quick visual reference in your editor.
+
+While [GitLens](https://www.gitkraken.com/gitlens) helps visualize commit history, it depends on meaningful commit messages. You can use the **GitKraken MCP Server** to investigate change history automatically.
 
 Ask:
 
@@ -59,7 +63,7 @@ Ask:
 Who last changed the <function-name> function and why?
 ```
 
-The MCP Server will call the `git_blame` tool and relevant Git commands to gather and summarize context for you.
+The **GitKraken MCP Server** will call the `git_blame` tool and relevant Git commands to gather and summarize context for you.
 
 ### Next Steps
 

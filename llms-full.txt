@@ -270,9 +270,11 @@ Manually checking Jira or GitHub for your assigned issues can be tedious. Instea
 What issues are assigned to me?
 ```
 
-This prompt uses the `issues_assigned_to_me` tool to query Jira and/or GitHub and list all issues assigned to your account.
+This prompt uses the issues_assigned_to_me tool to query Jira and/or GitHub and list all issues assigned to your account.
 
-## Start Work on a Jira Issue
+### Start Work on a Jira Issue
+
+Use this when you want to start work on a Jira ticket and have a properly named branch created automatically. Use git_branch directly when you already know the exact branch name you want and don't need issue details fetched.
 
 To start work on a specific task, use the following prompt:
 
@@ -280,13 +282,15 @@ To start work on a specific task, use the following prompt:
 Start work on Jira issue <issue-id>
 ```
 
-Replace `<issue-id>` with the actual issue ID. The MCP Server will call the `issues_get_detail` tool, fetch issue details, check your workspace, and create a new branch for that issue.
+Replace <issue-id> with the actual issue ID. The GitKraken MCP Server will call the issues_get_detail tool, fetch issue details, check your workspace, and create a new branch for that issue.
 
-Depending on your agent and model, your IDE may then modify related files or call tools such as `git_status` and `git_add_or_commit`.
+Depending on your agent and model, your IDE may then modify related files or call tools such as git_status and git_add_or_commit.
 
-## Debug and Understand History
+### Debug and Understand History
 
-While GitLens helps visualize commit history, it depends on meaningful commit messages. You can use the MCP Server to investigate change history automatically.
+Use this when you need to identify who changed a specific function and why, and want the context summarized automatically. Use GitLens inline blame instead when you already know the file and line and want a quick visual reference in your editor.
+
+While GitLens helps visualize commit history, it depends on meaningful commit messages. You can use the GitKraken MCP Server to investigate change history automatically.
 
 Ask:
 
@@ -294,85 +298,229 @@ Ask:
 Who last changed the <function-name> function and why?
 ```
 
-The MCP Server will call the `git_blame` tool and relevant Git commands to gather and summarize context for you.
+The GitKraken MCP Server will call the git_blame tool and relevant Git commands to gather and summarize context for you.
+
+### Next Steps
+
+- Tools Reference: https://help.gitkraken.com/mcp/MCP-tools-reference/
+- Prompts Reference: https://help.gitkraken.com/mcp/MCP-prompts-reference/
 
 ---
 
 # Tools Reference
 
 URL: https://help.gitkraken.com/mcp/MCP-tools-reference/
-Last updated: February 2026
+Last updated: March 2026
 
-Tools are a fundamental part of the MCP ecosystem. They are the building blocks of the GitKraken Model Context Protocol (MCP) and allow you to interact with git and the integrations you have set up such as GitHub, GitLab, Jira, and Azure DevOps.
+Tools are a fundamental part of the MCP ecosystem. They are the building blocks of the GitKraken MCP Server and allow you to interact with Git and the integrations you have set up such as GitHub, GitLab, Jira, and Azure DevOps.
 
-You can enable/disable them specifically within your chosen AI IDE/Agent. This list will change over time as we add more tools and consolidate the existing ones.
+You can enable/disable them specifically within your chosen AI IDE or agent. This list will change over time as we add more tools and consolidate the existing ones.
 
 ## Quick Start
 
-The GitKraken MCP Server exposes tools that AI agents access via the `tools/list` MCP command. These tools cover git operations, GitLens workflows, issue tracking, and pull request management across GitHub, GitLab, Jira, and Azure DevOps.
+The GitKraken MCP Server exposes tools that AI agents access via the tools/list MCP command. These tools cover Git operations, GitLens workflows, issue tracking, and pull request management across GitHub, GitLab, Jira, and Azure DevOps.
 
 Tools are organized into the following categories:
 
-- Git: Stage files, commit, view blame, manage branches, checkout, log or diff, push, stash, check status, and manage worktrees.
-- GitKraken: List workspaces.
-- GitLens: Open Commit Composer, open Launchpad, start work on an issue, start a PR review.
-- Issues: Add comments, fetch assigned issues, retrieve issue details.
-- Pull Requests: Find assigned PRs, create reviews, retrieve comments, retrieve PR details.
-- Repository: Get file content.
+- Git: Stage files, commit, view blame, manage branches, checkout, log or diff, push, stash, check status, and manage worktrees. Available on all plans; private remote operations require Pro or higher.
+- GitKraken: List workspaces. Available on all plans.
+- GitLens: Open Commit Composer, open Launchpad, start work on an issue, start a PR review. Requires a GitLens plan.
+- Issues: Add comments, fetch assigned issues, retrieve issue details. Requires Pro or higher for cloud issue trackers (GitHub Issues, GitLab, Jira Cloud); Advanced or higher for enterprise trackers (Jira Data Center, Azure DevOps Server).
+- Pull Requests: Find assigned PRs, create reviews, retrieve comments, retrieve PR details. Requires Pro or higher.
+- Repository: Get file content. Available on all plans for public repos; Pro or higher for private repos.
 
-You can enable or disable individual tools in your AI IDE or agent configuration. To see these tools applied in practice, refer to the Example Workflows page.
+Requirements: GitKraken CLI installed and authenticated (gk auth login). Pro or higher for Issues, Pull Request, and private repo tools. Advanced or higher for enterprise Git and issue tracker integrations. GitLens 1.101.0 or later for GitLens tools.
 
-## Git Tools
+## Summary
 
-- git_add_or_commit: Add file contents to the index (`git add <pathspec>`) or commit changes (`git commit -m <message> [files...]`). Use the `action` parameter to specify which operation to perform.
-- git_blame: Show what revision and author last modified each line of a file (`git blame <file>`).
-- git_branch: List or create branches (`git branch`).
-- git_checkout: Switch branches or restore working tree files (`git checkout <branch>`).
-- git_log_or_diff: Show commit logs or changes between commits (`git log --oneline` or `git diff`).
-- git_push: Update remote refs along with associated objects (`git push`).
-- git_stash: Stash the changes in a dirty working directory (`git stash`).
-- git_status: Show the working tree status (`git status`).
-- git_worktree: List or add git worktrees (`git worktree <action>`).
+| Tool                         | Category      | Description                                              |
+|------------------------------|---------------|----------------------------------------------------------|
+| git_add_or_commit            | Git           | Stage files or commit changes                            |
+| git_blame                    | Git           | Show line-by-line change history for a file              |
+| git_branch                   | Git           | List or create branches                                  |
+| git_checkout                 | Git           | Switch branches or restore working tree files            |
+| git_log_or_diff              | Git           | Show commit logs or diffs                                |
+| git_push                     | Git           | Push changes to a remote                                 |
+| git_stash                    | Git           | Stash changes in a dirty working directory               |
+| git_status                   | Git           | Show the working tree status                             |
+| git_worktree                 | Git           | List or add git worktrees                                |
+| gitkraken_workspace_list     | GitKraken     | List all GitKraken workspaces                            |
+| gitlens_commit_composer      | GitLens       | Open the commit composer in GitLens                      |
+| gitlens_launchpad            | GitLens       | Open Launchpad in GitLens                                |
+| gitlens_start_review         | GitLens       | Start a PR review workflow                               |
+| gitlens_start_work           | GitLens       | Start work on an issue                                   |
+| issues_add_comment           | Issues        | Add a comment to an issue                                |
+| issues_assigned_to_me        | Issues        | Fetch issues assigned to you                             |
+| issues_get_detail            | Issues        | Get details for a specific issue                         |
+| pull_request_assigned_to_me  | Pull Requests | Find PRs where you are assignee, author, or reviewer     |
+| pull_request_create_review   | Pull Requests | Create a review for a pull request                       |
+| pull_request_get_comments    | Pull Requests | Get all comments on a pull request                       |
+| pull_request_get_detail      | Pull Requests | Get details for a specific pull request                  |
+| repository_get_file_content  | Repository    | Get file content from a repository                       |
 
-## GitKraken Tools
+## When to Use Which Tool
 
-- gitkraken_workspace_list: Lists all GitKraken workspaces.
+| I want to...                                         | Use this tool                          |
+|------------------------------------------------------|----------------------------------------|
+| See who last changed a specific line                 | git_blame                              |
+| Review commit history or compare branches/commits    | git_log_or_diff                        |
+| Stage files before committing                        | git_add_or_commit (action: add)        |
+| Commit staged changes with a message                 | git_add_or_commit (action: commit)     |
+| Start work on an issue (creates branch + worktree)   | gitlens_start_work                     |
+| Create or list branches manually                     | git_branch                             |
+| Switch branches or restore files                     | git_checkout                           |
+| Review a pull request (diff view + agent workflow)   | gitlens_start_review                   |
+| Get pull request details only                        | pull_request_get_detail                |
+| Check working directory status                       | git_status                             |
+| Save work in progress without committing             | git_stash                              |
+| Push local commits to a remote                       | git_push                               |
+| List or create git worktrees                         | git_worktree                           |
+| List GitKraken workspaces                            | gitkraken_workspace_list               |
+| Get file content from a repository                   | repository_get_file_content            |
+| Open GitLens Launchpad                               | gitlens_launchpad                      |
+| Stage and compose a commit in GitLens UI             | gitlens_commit_composer                |
+| Fetch issues assigned to you                         | issues_assigned_to_me                  |
+| Get details for a specific issue                     | issues_get_detail                      |
+| Add a comment to an issue                            | issues_add_comment                     |
+| Find PRs where you are assignee, author, or reviewer | pull_request_assigned_to_me            |
+| Create a review for a pull request                   | pull_request_create_review             |
+| Get all comments on a pull request                   | pull_request_get_comments              |
 
-## GitLens Tools
+## Commit, Branch, and View History
 
-- gitlens_commit_composer: Opens commit composer in GitLens.
-- gitlens_launchpad: Opens Launchpad in GitLens.
-- gitlens_start_review: Gets PR details, opens a new worktree and window, opens the diff view, and starts an agent on review.
-- gitlens_start_work: Gets issue details, opens a new worktree and window, and starts an agent on work.
+### git_add_or_commit
 
-## Issues Tools
+Add file contents to the index (git add <pathspec>) or record changes to the repository (git commit -m <message> [files...]). Use the action parameter: add to stage files, commit to record a commit with a message.
 
-- issues_add_comment: Add a comment to an issue.
-- issues_assigned_to_me: Fetch all issues assigned to the current user.
-- issues_get_detail: Retrieve detailed information about a specific issue by its unique ID.
+### git_blame
 
-## Pull Request Tools
+Show what revision and author last modified each line of a file (git blame <file>).
 
-- pull_request_assigned_to_me: Search pull requests where you are the assignee, author, or reviewer.
-- pull_request_create_review: Create a review for a pull request.
-- pull_request_get_comments: Get all comments on a pull request.
-- pull_request_get_detail: Get details for a specific pull request.
+### git_branch
 
-## Repository Tools
+List or create branches (git branch).
 
-- repository_get_file_content: Get file content from a repository.
+### git_checkout
+
+Switch branches or restore working tree files (git checkout <branch>).
+
+### git_log_or_diff
+
+Show commit logs or changes between commits (git log --oneline or git diff).
+
+### git_push
+
+Update remote refs along with associated objects (git push).
+
+### git_stash
+
+Stash the changes in a dirty working directory (git stash).
+
+### git_status
+
+Show the working tree status (git status).
+
+### git_worktree
+
+List or add git worktrees. Use list to see all worktrees, or add to create a new one.
+
+## Access GitKraken Workspaces
+
+### gitkraken_workspace_list
+
+Lists all GitKraken workspaces.
+
+## Start Work and Reviews with GitLens
+
+### gitlens_commit_composer
+
+Opens commit composer in GitLens.
+
+### gitlens_launchpad
+
+Opens Launchpad in GitLens.
+
+### gitlens_start_review
+
+Gets PR details, opens a new worktree and window, opens the diff view, and starts an agent on review.
+
+### gitlens_start_work
+
+Gets issue details, opens a new worktree and window, and starts an agent on work.
+
+## Query and Comment on Issues
+
+### issues_add_comment
+
+Add a comment to an issue.
+
+### issues_assigned_to_me
+
+Fetch all issues assigned to the current user.
+
+### issues_get_detail
+
+Retrieve detailed information about a specific issue by its unique ID.
+
+## Review and Manage Pull Requests
+
+### pull_request_assigned_to_me
+
+Search pull requests where you are the assignee, author, or reviewer.
+
+### pull_request_create_review
+
+Create a review for a pull request.
+
+### pull_request_get_comments
+
+Get all comments on a pull request.
+
+### pull_request_get_detail
+
+Get details for a specific pull request.
+
+## Read File Content
+
+### repository_get_file_content
+
+Get file content from a repository.
 
 ---
 
 # Prompts Reference
 
 URL: https://help.gitkraken.com/mcp/MCP-prompts-reference/
-Last updated: February 2026
+Last updated: March 2026
 
-Prompts are a higher level feature of the Model Context Protocol (MCP). They help you save time on repetitive tasks by bundling preconfigured text prompts that also help enforce the usage of specific tools at the right time for the right workflow.
+Prompts are a higher-level feature of the GitKraken MCP Server. They help you save time on repetitive tasks by bundling preconfigured text prompts that also help enforce the usage of specific tools at the right time for the right workflow.
 
 You can think of them as bundled workflows that help save you typing time when prompting. This list will change over time as we add more prompts and fine-tune the existing ones.
 
-## Code Review Prompts
+## Quick Start
 
-- code_review_branch: Generate a code review branch name based on the provided context.
+Prompts are invoked via the prompts/get MCP command. Unlike tools, which execute actions, prompts return pre-structured text you can pass directly to your agent.
+
+Example: generating a branch name for a code review:
+
+```
+Prompt: code_review_branch
+Context: "Reviewing PR #342: Add OAuth2 login support"
+```
+
+The prompt returns a branch name string your agent can use with git_checkout or git_branch.
+
+## Summary
+
+| Prompt               | Category     | Description                                                                                    |
+|----------------------|--------------|-----------------------------------------------------------------------------------------------|
+| code_review_branch   | Code Review  | Generate a code review branch name based on provided context                                   |
+
+## Generate Code Review Branch Names
+
+### code_review_branch
+
+Generate a code review branch name. Provide the PR title, issue number, or a brief description of the changes being reviewed. Returns a branch name string.
+
+Use this when you want a consistently named review branch and your team uses a naming convention based on the PR title or issue number.
+Use git_branch directly when you already know the exact branch name you want.
