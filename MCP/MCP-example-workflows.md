@@ -1,15 +1,32 @@
 ---
 title: Example Workflows
-description: A collection of example workflows that demonstrate how to use the GitKraken MCP (Model Context Protocol) Server to automate common development tasks.
+description: A collection of example workflows that demonstrate how to use the GitKraken MCP Server to automate common development tasks.
+product: "GitKraken MCP Server"
+content_type: "how-to"
+audience: "developer"
+plan_required: "Pro, Advanced, Business, Enterprise"
+integrations: ["GitHub", "Jira"]
+status: "GA"
+last_verified: "2026-03"
 taxonomy:
   category: MCP
 ---
 
-<kbd>Last updated: February 2026</kbd>
+<kbd>Last updated: March 2026</kbd>
 
-Explore these example workflows to learn how the GitKraken MCP (Model Context Protocol) Server can automate everyday development tasks. Use them as inspiration to craft your own time-saving workflows.
+These example workflows show how an AI agent uses the **GitKraken MCP Server** to perform common Git and project management tasks, including querying assigned issues, starting work on a ticket, and investigating change history. Each workflow shows the agent prompt and the tools called.
+
+> **Requirements:** Pro or higher plan · [GitKraken CLI](https://www.gitkraken.com/cli) installed and authenticated (`gk auth login`) · GitHub or Jira integration configured in GitKraken for issue-related workflows (Advanced or higher for Jira Data Center)
+
+| Workflow | Tools Called | Integration Required |
+|---|---|---|
+| [Query assigned issues](#query-jira-and-github-for-assigned-issues) | `issues_assigned_to_me` | Jira or GitHub |
+| [Start work on a Jira issue](#start-work-on-a-jira-issue) | `issues_get_detail`, `git_branch`, `git_checkout` | Jira |
+| [Debug and understand history](#debug-and-understand-history) | `git_blame` | Any Git repo |
 
 ### Query Jira and GitHub for Assigned Issues
+
+**Use this when** you want a unified view of issues assigned to you across Jira and/or GitHub without switching between tools.
 
 Manually checking Jira or GitHub for your assigned issues can be tedious. Instead, ask your agent:
 

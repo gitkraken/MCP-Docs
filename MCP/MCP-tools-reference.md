@@ -1,13 +1,19 @@
 ---
 title: Tools Reference
 description: List of Tools accessible to AI/LLMs via the MCP tools/list command
+product: "GitKraken MCP Server"
+content_type: "reference"
+audience: "agent"
+plan_required: "all"
+status: "GA"
+last_verified: "2026-03"
 taxonomy:
   category: MCP
 ---
 
 <kbd>Last updated: March 2026</kbd>
 
-Tools are a fundamental part of the MCP ecosystem. They are the building blocks of the GitKraken Model Context Protocol (MCP) and allow you to interact with git and the integrations you have set up such as GitHub, GitLab, Jira, and Azure DevOps.
+Tools are a fundamental part of the MCP ecosystem. They are the building blocks of the **GitKraken MCP Server** and allow you to interact with git and the integrations you have set up such as GitHub, GitLab, Jira, and Azure DevOps.
 
 You can enable/disable them specifically within your chosen AI IDE/Agent. This list will change over time as we add more tools and consolidate the existing ones.
 
