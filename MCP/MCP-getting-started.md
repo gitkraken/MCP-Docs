@@ -149,6 +149,8 @@ claude mcp add -t stdio gitkraken gk mcp
 claude mcp list
 ```
 
+---
+
 #### OpenAI Codex CLI
 
 To manually install the GitKraken MCP server in **Codex CLI**, use the command line: 
@@ -171,6 +173,8 @@ codex mcp add gitkraken -- gk mcp
 codex mcp list
 ```
 
+---
+
 #### Codex Desktop
 
 To manually install the GitKraken MCP server in **Codex Desktop**:
@@ -186,6 +190,8 @@ To manually install the GitKraken MCP server in **Codex Desktop**:
 | Name        | gitkraken   |
 | Command     | gk          |
 | Arguments   | mcp         |
+
+---
 
 #### Gemini CLI 
 
@@ -208,6 +214,8 @@ gemini mcp add -t stdio gitkraken gk mcp
 ```bash
 gemini mcp list
 ```
+
+---
 
 #### VS Code
 
