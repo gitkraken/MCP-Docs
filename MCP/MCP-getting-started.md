@@ -43,6 +43,10 @@ The fastest way to install the GitKraken MCP Server is through GitLens in VS Cod
 | Kiro | CLI (manual JSON) | gk CLI authenticated |
 | JetBrains IntelliJ | CLI (manual JSON) | JetBrains AI Assistant |
 | Google Antigravity | CLI (manual JSON) | gk CLI authenticated |
+| Claude Code | CLI (manual JSON) | gk CLI authenticated |
+| Codex CLI | CLI (manual JSON) | gk CLI authenticated |
+| Codex Desktop | CLI (manual JSON) | gk CLI authenticated |
+| Gemini CLI | CLI (manual JSON) | gk CLI authenticated |
 
 Once updated, see [Verify installation](#verify-installation) below to confirm the server is active.
 
@@ -116,6 +120,94 @@ Once authenticated, add the **GitKraken MCP Server** to your preferred agent.
 ### Third Party Tools Manual Setup
 
 > **Prerequisites:** The [GitKraken CLI](https://www.gitkraken.com/cli) must be installed and authenticated before configuring any IDE. Run `gk auth login` in your terminal first.
+
+#### Claude Code
+
+
+To manually install the GitKraken MCP server in **Claude Code**, use the command line:
+
+1. Open your terminal and run the following command
+
+```bash
+claude
+```
+
+2. In the Claude REPL, enter the following command to add the GitKraken MCP Server
+
+```bash
+claude mcp add -t stdio gitkraken gk mcp
+```
+
+<figure>
+  <img src="/wp-content/uploads/claudecode-mcp-add.png" class="help-center-img img-bordered" alt="Claude Code showing mcp installation ." />
+  <figcaption style="text-align: center; color: #888">Use Claude Code to add a new MCP server.</figcaption>
+</figure>
+
+3. Verify the MCP server is installed correctly
+
+```bash
+claude mcp list
+```
+
+#### OpenAI Codex CLI
+
+To manually install the GitKraken MCP server in **Codex CLI**, use the command line: 
+
+1. Open your terminal and run the following command
+
+```bash
+codex
+```
+
+2. In the Codex CLI, enter the following command to add the GitKraken MCP Server
+
+```bash
+codex mcp add gitkraken -- gk mcp
+```
+
+3. Verify the MCP server is installed correctly
+
+```bash
+codex mcp list
+```
+
+#### Codex Desktop
+
+To manually install the GitKraken MCP server in **Codex Desktop**:
+
+1. From the sidebar, open **Settings**, then navigate to the **MCP Servers** tab.
+
+2. Select **Add Server**
+
+3. Select the STDIO tab and please insert the following 
+
+| Field       | Value       |
+| ----------- | ----------- |
+| Name        | gitkraken   |
+| Command     | gk          |
+| Arguments   | mcp         |
+
+#### Gemini CLI 
+
+To manually install the GitKraken MCP Server in **Gemini CLI**, use the command line: 
+
+1. Open your terminal and run the following command 
+
+```bash
+gemini
+```
+
+2. In the Gemini CLI, enter the following command to add the GitKraken MCP Server
+
+```bash
+gemini mcp add -t stdio gitkraken gk mcp
+```
+
+3. Verify the MCP server is installed correctly
+
+```bash
+gemini mcp list
+```
 
 #### VS Code
 
