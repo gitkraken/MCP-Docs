@@ -172,6 +172,7 @@ codex mcp add gitkraken -- gk mcp
 ```bash
 codex mcp list
 ```
+
 ---
 
 #### Codex Desktop
@@ -213,6 +214,7 @@ gemini mcp add -t stdio gitkraken gk mcp
 ```bash
 gemini mcp list
 ```
+
 ---
 
 #### VS Code
