@@ -18,25 +18,23 @@ taxonomy:
 > **Requirements:**
 > - [GitKraken CLI](https://www.gitkraken.com/cli) installed and authenticated (`gk auth login`)
 > - GitKraken MCP server configured in your MCP host
-> - `--experimental` flag included in the server launch args
 > - A host that supports MCP App HTML resource rendering
-
-> **Preview feature:** MCP Apps are currently experimental. To enable them, the server entry must include `--experimental`. The `--experimental` flag requirement will be removed when this feature reaches general availability.
 
 ***
 
 ## Quick Start
 
 1. Install the [GitKraken CLI](https://www.gitkraken.com/cli) and authenticate: `gk auth login`
-2. Generate the MCP server configuration for your host:
+2. Install the MCP server for your host:
 
 ```bash
-gk mcp config <client> --experimental
+gk mcp install <client>
 ```
 
-3. Add the generated configuration to your host's MCP config file.
-4. Restart the host application.
-5. In a Git repository, ask `What changes are pending in the repo` to open the Git Status app, or `Visualize the commit history in a graph` to open the Git Graph app.
+Replace `<client>` with your host name (for example, `vscode`, `cursor`, or `claude-desktop`). This generates and writes the configuration automatically. If your host is not supported by the install command, see [Manual configuration](#generate-the-configuration) below.
+
+3. Restart the host application.
+4. In a Git repository, ask `What changes are pending in the repo` to open the Git Status app, or `Visualize the commit history in a graph` to open the Git Graph app.
 
 If your host supports MCP App rendering, the app opens instead of plain text output. If it does not, the base tool output appears normally.
 
@@ -51,7 +49,7 @@ There are three layers to understand:
 | Layer | What it does |
 |---|---|
 | Base MCP tool (`git_status`, `git_graph`) | Works in any host, with or without app UI |
-| MCP App resource (`ui://gk-cli/app/git-status`, `ui://gk-cli/app/git-graph`) | Registered when `--experimental` is active and app assets are available |
+| MCP App resource (`ui://gk-cli/app/git-status`, `ui://gk-cli/app/git-graph`) | Registered when app assets are available |
 | App-only helper (`app_tool_box`) | Dispatches actions used by the app frontend; not intended for direct agent use |
 
 The `app_tool_box` helper is required for the app UI to function. If it is missing, the base tool still works, but the app will not load.
@@ -73,17 +71,25 @@ Rendering is not guaranteed in every host, even those listed above. Other MCP ho
 
 ## Set Up MCP Apps
 
-### Generate the configuration
+### Install with the CLI (recommended)
 
-To enable MCP Apps, the server entry must launch `gk mcp` with the `--experimental` flag. The safest way to generate a correct config is:
+The easiest way to configure MCP Apps is to run:
 
 ```bash
-gk mcp config <client> --experimental
+gk mcp install <client>
 ```
 
-Replace `<client>` with the name of your host (for example, `vscode`, `cursor`, or `claude-desktop`).
+Replace `<client>` with the name of your host (for example, `vscode`, `cursor`, or `claude-desktop`). This command writes the configuration directly to the correct file for your host with no manual editing required.
 
-Then place the generated configuration into the correct config file for your host.
+### Generate the configuration
+
+If `gk mcp install` does not support your host, generate a config snippet and add it manually:
+
+```bash
+gk mcp config <client>
+```
+
+Replace `<client>` with the name of your host, then place the generated configuration into the correct config file for your host.
 
 ### Config file locations
 
@@ -130,14 +136,14 @@ The following table lists the default config file path for each supported client
 
 ### Example configuration
 
-For most JSON-based hosts, the configuration with MCP Apps enabled looks like this:
+For most JSON-based hosts, the configuration looks like this:
 
 ```json
 {
   "mcpServers": {
     "gitkraken": {
       "command": "gk",
-      "args": ["mcp", "--experimental"]
+      "args": ["mcp"]
     }
   }
 }
@@ -151,7 +157,7 @@ For VS Code specifically:
     "GitKraken": {
       "type": "stdio",
       "command": "gk",
-      "args": ["mcp", "--experimental"]
+      "args": ["mcp"]
     }
   }
 }
@@ -240,20 +246,19 @@ The base tool ran successfully, but the app did not render.
 
 **Check:**
 
-1. Confirm `--experimental` is present in the server `args`.
-2. Restart the host after updating the config.
-3. Confirm your host supports MCP App rendering. See [Compatible hosts](#compatible-hosts) above.
+1. Restart the host after updating the config.
+2. Confirm your host supports MCP App rendering. See [Compatible hosts](#compatible-hosts) above.
 
 ---
 
 ### `git_status` exists, but `app_tool_box` does not
 
-**Most likely cause:** `--experimental` is missing from the server args.
+**Most likely cause:** The `mcp_resources` directory is missing from the GitKraken CLI installation.
 
 **Check:**
 
-1. Confirm `--experimental` is in the server `args`.
-2. Confirm the installed `gk` binary has a sibling `mcp_resources` directory. If assets are missing, the app layer is not registered even when `--experimental` is set.
+1. Confirm the installed `gk` binary has a sibling `mcp_resources` directory. If assets are missing, the app layer is not registered.
+2. Reinstall the GitKraken CLI to restore the binary and resources together.
 
 ---
 
@@ -299,11 +304,10 @@ Use this checklist to work through most MCP Apps issues:
 1. Confirm the GitKraken CLI is installed and runnable (`gk --version`).
 2. Confirm the MCP host is pointing at the correct `gk` executable.
 3. Confirm the server args include `mcp`.
-4. Confirm the server args include `--experimental`.
-5. Restart the MCP host application.
-6. Run `git_status` in a known Git repository.
-7. If the tool runs but no app appears, verify your host supports MCP App rendering.
-8. If the app still does not appear, reinstall the GitKraken CLI so the binary and `mcp_resources` are restored together.
+4. Restart the MCP host application.
+5. Run `git_status` in a known Git repository.
+6. If the tool runs but no app appears, verify your host supports MCP App rendering.
+7. If the app still does not appear, reinstall the GitKraken CLI so the binary and `mcp_resources` are restored together.
 
 ***
 
