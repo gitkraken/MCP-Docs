@@ -31,7 +31,7 @@ taxonomy:
 gk mcp install <client>
 ```
 
-Replace `<client>` with your host name (for example, `vscode`, `cursor`, or `claude-desktop`). This generates and writes the configuration automatically. If your host is not supported by the install command, see [Manual configuration](#generate-the-configuration) below.
+Replace `<client>` with your host name (for example, `vscode`, `vscode-insiders`, or `claude-desktop`). This generates and writes the configuration automatically. If your host is not supported by the install command, see [Manual configuration](#generate-the-configuration) below.
 
 3. Restart the host application.
 4. In a Git repository, ask `What changes are pending in the repo` to open the Git Status app, or `Visualize the commit history in a graph` to open the Git Graph app.
@@ -62,14 +62,15 @@ MCP App rendering depends on host support. The following hosts are known to rend
 
 - VS Code
 - VS Code Insiders
-- Claude Desktop (non-code tab)
-- Codex
+- Claude Desktop (limited support in the non-code tab)
 
 Rendering is not guaranteed in every host, even those listed above. Other MCP hosts can run the base `git_status` and `git_graph` tools and return plain output; they just may not render the interactive app. GitKraken is actively working to expand rendering support across additional coding agent providers.
 
 ***
 
 ## Set Up MCP Apps
+
+MCP Apps currently work in **VS Code** and **VS Code Insiders**, with limited support in **Claude Desktop**.
 
 ### Install with the CLI (recommended)
 
@@ -79,7 +80,7 @@ The easiest way to configure MCP Apps is to run:
 gk mcp install <client>
 ```
 
-Replace `<client>` with the name of your host (for example, `vscode`, `cursor`, or `claude-desktop`). This command writes the configuration directly to the correct file for your host with no manual editing required.
+Replace `<client>` with the name of your host (`vscode`, `vscode-insiders`, or `claude-desktop`). This command writes the configuration directly to the correct file for your host with no manual editing required.
 
 ### Generate the configuration
 
@@ -93,7 +94,7 @@ Replace `<client>` with the name of your host, then place the generated configur
 
 ### Config file locations
 
-The following table lists the default config file path for each supported client.
+The following tables list the default config file path for each supported setup host.
 
 **macOS and Linux**
 
@@ -102,16 +103,6 @@ The following table lists the default config file path for each supported client
 | VS Code | `~/.vscode/mcp.json` |
 | VS Code Insiders | `~/.vscode-insiders/mcp.json` |
 | Claude Desktop | `~/Library/Application Support/Claude/claude_desktop_config.json` |
-| Claude Code | `~/.claude.json` |
-| Cursor | `~/.cursor/mcp.json` |
-| Windsurf | `~/.codeium/windsurf/mcp_config.json` |
-| Zed | `~/.config/zed/settings.json` |
-| GitHub Copilot CLI | `~/.copilot/mcp-config.json` |
-| Codex | `~/.codex/config.toml` |
-| Gemini CLI | `~/.gemini/settings.json` |
-| Antigravity | `~/.gemini/antigravity/mcp_config.json` |
-| Kiro | `~/.kiro/settings/mcp.json` |
-| JetBrains Copilot | `~/.local/share/github-copilot/intellij/mcp.json` |
 
 **Windows**
 
@@ -120,19 +111,8 @@ The following table lists the default config file path for each supported client
 | VS Code | `%APPDATA%\Code\User\mcp.json` |
 | VS Code Insiders | `%APPDATA%\Code - Insiders\User\mcp.json` |
 | Claude Desktop | `%APPDATA%\Claude\claude_desktop_config.json` |
-| Claude Code | `%USERPROFILE%\.claude.json` |
-| Cursor | `%USERPROFILE%\.cursor\mcp.json` |
-| Windsurf | `%USERPROFILE%\.codeium\windsurf\mcp_config.json` |
-| Trae | `%APPDATA%\Trae\User\mcp.json` |
-| Zed | `%APPDATA%\Zed\settings.json` |
-| GitHub Copilot CLI | `%USERPROFILE%\.copilot\mcp-config.json` |
-| Codex | `%USERPROFILE%\.codex\config.toml` |
-| Gemini CLI | `%USERPROFILE%\.gemini\settings.json` |
-| Antigravity | `%USERPROFILE%\.gemini\antigravity\mcp_config.json` |
-| Kiro | `%USERPROFILE%\.kiro\settings\mcp.json` |
-| JetBrains Copilot | `%LOCALAPPDATA%\github-copilot\intellij\mcp.json` |
 
-> **Note:** Codex uses TOML format, not JSON. Zed uses a different JSON path structure than most other hosts. VS Code uses a `/servers/GitKraken` path; most other JSON-based hosts use `/mcpServers/GitKraken`.
+> **Note:** VS Code uses a `/servers/GitKraken` path; Claude Desktop and most other JSON-based hosts use `/mcpServers/GitKraken`.
 
 ### Example configuration
 
