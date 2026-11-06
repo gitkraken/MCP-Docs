@@ -10,6 +10,12 @@ status: "GA"
 last_verified: "2026-03"
 taxonomy:
   category: MCP
+custom_fields:
+    nav_category: "mcp-example-workflows"
+    nav_label: "Example Workflows"
+    nav_order: 30
+    nav_parent: ""
+    page_type: "content"
 ---
 
 <kbd>Last updated: March 2026</kbd>

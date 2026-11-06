@@ -9,6 +9,12 @@ status: "preview"
 last_verified: "2026-04"
 taxonomy:
   category: MCP
+custom_fields:
+    nav_category: "mcp-apps"
+    nav_label: "GitKraken MCP Apps"
+    nav_order: 20
+    nav_parent: ""
+    page_type: "content"
 ---
 
 <kbd>Last updated: April 2026</kbd>
