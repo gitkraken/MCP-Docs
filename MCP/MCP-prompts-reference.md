@@ -9,6 +9,12 @@ status: "GA"
 last_verified: "2026-03"
 taxonomy:
   category: MCP
+custom_fields:
+    nav_category: "mcp-prompts-reference"
+    nav_label: "Prompts Reference"
+    nav_order: 50
+    nav_parent: ""
+    page_type: "content"
 ---
 
 <kbd>Last updated: March 2026</kbd>

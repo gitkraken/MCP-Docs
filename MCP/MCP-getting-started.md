@@ -9,6 +9,12 @@ status: "GA"
 last_verified: "2026-03"
 taxonomy:
   category: MCP
+custom_fields:
+    nav_category: "mcp-getting-started"
+    nav_label: "Getting Started with MCP"
+    nav_order: 10
+    nav_parent: ""
+    page_type: "main-index"
 ---
 
 <kbd>Last updated: March 2026</kbd>
