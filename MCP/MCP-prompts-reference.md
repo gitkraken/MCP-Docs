@@ -2,11 +2,16 @@
 title: Prompts Reference
 description: List of Prompts accessible to AI/LLMs via the MCP prompts/list command
 product: "GitKraken MCP Server"
+feature: "Prompts"
 content_type: "reference"
 audience: "agent"
 plan_required: "all"
+git_hosts: [n/a]
+integrations: []
 status: "GA"
 last_verified: "2026-03"
+llms_include: true
+tags: [prompts, prompts-get, code-review-branch, branch-naming, code-review]
 taxonomy:
   category: MCP
 custom_fields:

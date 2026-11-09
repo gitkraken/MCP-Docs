@@ -2,11 +2,16 @@
 title: Getting Started with the GitKraken MCP Server
 description: Learn how to install the GitKraken MCP Server in GitLens, VS Code, and other supported editors.
 product: "GitKraken MCP Server"
+feature: "Getting Started"
 content_type: "install"
 audience: "developer"
 plan_required: "all"
+git_hosts: [n/a]
+integrations: [vscode, vscode-insiders, cursor, windsurf, trae, claude-desktop, amazon-q-developer, kiro, jetbrains-intellij, antigravity, claude-code, codex-cli, codex-desktop, gemini-cli]
 status: "GA"
 last_verified: "2026-03"
+llms_include: true
+tags: [install, gitlens, gitkraken-cli, gk-mcp, stdio, mcp-configuration, deeplinks, verify-installation]
 taxonomy:
   category: MCP
 custom_fields:

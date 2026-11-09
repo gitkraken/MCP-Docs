@@ -2,11 +2,16 @@
 title: GitKraken MCP Apps
 description: Learn how to set up and use GitKraken MCP Apps, which provide interactive Git Status and Git Graph experiences in compatible MCP hosts.
 product: "GitKraken MCP Server"
+feature: "MCP Apps"
 content_type: "how-to"
 audience: "developer"
 plan_required: "all"
+git_hosts: [generic]
+integrations: [vscode, vscode-insiders, claude-desktop]
 status: "preview"
 last_verified: "2026-04"
+llms_include: true
+tags: [mcp-apps, git-status, git-graph, app-tool-box, gk-mcp-install, config-files, read-only-mode, troubleshooting]
 taxonomy:
   category: MCP
 custom_fields:

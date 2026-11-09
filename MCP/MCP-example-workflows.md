@@ -2,12 +2,16 @@
 title: Example Workflows
 description: A collection of example workflows that demonstrate how to use the GitKraken MCP Server to automate common development tasks.
 product: "GitKraken MCP Server"
+feature: "Example Workflows"
 content_type: "how-to"
 audience: "developer"
 plan_required: "Pro, Advanced, Business, Enterprise"
+git_hosts: [generic]
 integrations: ["GitHub", "Jira"]
 status: "GA"
 last_verified: "2026-03"
+llms_include: true
+tags: [example-workflows, assigned-issues, start-work, jira, github, git-blame, branch-creation]
 taxonomy:
   category: MCP
 custom_fields:
