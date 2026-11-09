@@ -1,33 +1,46 @@
 import fs from "fs";
 import path from "path";
 import { Tool } from "./types";
+import { replaceGeneratedRegion, tableCell } from "./render-shared";
+
+// Writes the tool summary table into the live Tools Reference page, between
+// <!-- generated:tools:start --> and <!-- generated:tools:end -->.
+// Front matter and the rest of the page are left untouched (render-shared.ts).
+// Scratch run: pnpm tools -- --file <copy of the page>
+
+const PAGE = path.join(__dirname, "MCP", "MCP-tools-reference.md");
+
+// Category from the tool name prefix, longest prefix first.
+const CATEGORIES: [string, string][] = [
+    ["gitkraken_", "GitKraken"],
+    ["gitlens_", "GitLens"],
+    ["git_", "Git"],
+    ["issues_", "Issues"],
+    ["pull_request_", "Pull Requests"],
+    ["repository_", "Repository"],
+    ["app_", "MCP Apps"],
+];
+
+function category(name: string): string {
+    const hit = CATEGORIES.find(([prefix]) => name.startsWith(prefix));
+    if (!hit) {
+        console.warn(`warning: no category for tool "${name}"; listed as "Other"`);
+        return "Other";
+    }
+    return hit[1];
+}
 
 const toolsRaw = fs.readFileSync(path.join(__dirname, "tools.json"), "utf8");
 const toolsJson: { tools: Tool[] } = JSON.parse(toolsRaw);
 
-const toolsMarkdown = toolsJson.tools.map((tool) => {
-    return `
-### ${tool.name}
+const rows = [...toolsJson.tools]
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((tool) => `| \`${tool.name}\` | ${category(tool.name)} | ${tableCell(tool.description)} |`);
 
-${tool.description}
-`;
-});
+const generated = [
+    "| Tool | Category | Description |",
+    "|------|----------|-------------|",
+    ...rows,
+].join("\n");
 
-const template = `
----
-title: Tools Reference
-description: List of Tools accessible to AI/LLMs via the MCP tools/list command
-taxonomy:
-  category: MCP
----
-
-Tools are a fundamental part of the MCP ecosystem. They are the building blocks of the GitKraken Model Context Protocol (MCP) and allow you to interact with git and the integrations you have set up such as GitHub, GitLab, Jira, and Azure DevOps.
-
-You can enable/disable them specifically within your chosen AI IDE/Agent.
-
-The tools available are listed below. This list will change over time as we add more tools and consolidate the existing ones.
-
-${toolsMarkdown.join("\n")}
-`;
-
-fs.writeFileSync(path.join(__dirname, "MCP", "03-tools-reference.md"), template);
+replaceGeneratedRegion("tools", PAGE, generated);
