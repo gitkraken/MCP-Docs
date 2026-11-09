@@ -2,11 +2,16 @@
 title: "Page Title (verb-first, e.g. How to Install the GitKraken MCP Server in VS Code)"
 description: "One-sentence description for search and retrieval. State the product, the task, and who it's for."
 product: "GitKraken MCP Server"
+feature: "Template"
 content_type: "how-to"            # how-to | reference | concept | troubleshooting | faq | install | integration
 audience: "developer"             # developer | agent | all
 plan_required: "all"              # all | Pro, Advanced, Business, Enterprise | Advanced, Business, Enterprise | etc.
+git_hosts: [n/a]
+integrations: []
 status: "GA"                      # GA | beta | preview | deprecated
 last_verified: "2026-03"
+llms_include: false
+tags: [template]
 taxonomy:
     category: MCP
 ---

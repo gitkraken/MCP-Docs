@@ -2,11 +2,16 @@
 title: Tools Reference
 description: List of Tools accessible to AI/LLMs via the MCP tools/list command
 product: "GitKraken MCP Server"
+feature: "Tools"
 content_type: "reference"
 audience: "agent"
 plan_required: "all"
+git_hosts: [github, gitlab, azure-devops]
+integrations: []
 status: "GA"
 last_verified: "2026-03"
+llms_include: true
+tags: [tools, tools-list, git, gitlens, issues, pull-requests, repository, plan-requirements]
 taxonomy:
   category: MCP
 custom_fields:
