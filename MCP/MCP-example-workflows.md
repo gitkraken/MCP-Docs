@@ -20,6 +20,11 @@ custom_fields:
     nav_order: 30
     nav_parent: ""
     page_type: "content"
+    home_group: "paths"
+    home_order: 30
+    entry_role: "Use"
+    entry_title: "Example workflows"
+    entry_desc: "Query assigned issues, start work on a Jira issue, and investigate change history"
 ---
 
 <kbd>Last updated: March 2026</kbd>

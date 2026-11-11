@@ -23,6 +23,8 @@ custom_fields:
     card_icon: "list-check"
     card_color: "amber"
     card_description: "Find, read, create and comment on issues"
+    home_group: "tools"
+    home_order: 40
 ---
 
 <kbd>Last updated: November 2026</kbd>

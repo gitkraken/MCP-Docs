@@ -23,6 +23,8 @@ custom_fields:
     card_icon: "git-branch"
     card_color: "purple"
     card_description: "Status, staging and commits, branches, history, remotes, stashes, worktrees and conflict resolution"
+    home_group: "tools"
+    home_order: 10
 ---
 
 <kbd>Last updated: November 2026</kbd>

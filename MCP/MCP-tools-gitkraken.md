@@ -23,6 +23,8 @@ custom_fields:
     card_icon: "stack-2"
     card_color: "blue"
     card_description: "List your GitKraken workspaces"
+    home_group: "tools"
+    home_order: 20
 ---
 
 <kbd>Last updated: November 2026</kbd>

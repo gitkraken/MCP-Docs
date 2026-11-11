@@ -23,6 +23,8 @@ custom_fields:
     card_icon: "book"
     card_color: "red"
     card_description: "Get file content from a repository"
+    home_group: "tools"
+    home_order: 60
 ---
 
 <kbd>Last updated: November 2026</kbd>
