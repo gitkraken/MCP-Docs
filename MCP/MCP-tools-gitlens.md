@@ -23,6 +23,8 @@ custom_fields:
     card_icon: "sparkles"
     card_color: "green"
     card_description: "Open Launchpad, start work on an issue and start a PR review in GitLens"
+    home_group: "tools"
+    home_order: 30
 ---
 
 <kbd>Last updated: November 2026</kbd>

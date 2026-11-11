@@ -20,6 +20,8 @@ custom_fields:
     nav_order: 80
     nav_parent: "mcp-getting-started"
     page_type: "content"
+    home_group: "clients"
+    home_order: 80
 ---
 
 <kbd>Last updated: March 2026</kbd>

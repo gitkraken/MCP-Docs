@@ -23,6 +23,8 @@ custom_fields:
     card_icon: "git-pull-request"
     card_color: "blue"
     card_description: "Find, read, create and review pull requests"
+    home_group: "tools"
+    home_order: 50
 ---
 
 <kbd>Last updated: November 2026</kbd>
