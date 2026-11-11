@@ -55,30 +55,43 @@ You can enable or disable individual tools in your AI IDE or agent configuration
 
 ## Summary
 
-| Tool | Category | Description |
-|------|----------|-------------|
-| `git_add_or_commit` | Git | Stage files or commit changes |
-| `git_blame` | Git | Show line-by-line change history for a file |
-| `git_branch` | Git | List or create branches |
-| `git_checkout` | Git | Switch branches or restore working tree files |
-| `git_log_or_diff` | Git | Show commit logs or diffs |
-| `git_push` | Git | Push changes to a remote |
-| `git_stash` | Git | Stash changes in a dirty working directory |
-| `git_status` | Git | Show the working tree status |
-| `git_worktree` | Git | List or add git worktrees |
-| `gitkraken_workspace_list` | GitKraken | List all GitKraken workspaces |
-| `gitlens_commit_composer` | GitLens | Open the commit composer in GitLens |
-| `gitlens_launchpad` | GitLens | Open Launchpad in GitLens |
-| `gitlens_start_review` | GitLens | Start a PR review workflow |
-| `gitlens_start_work` | GitLens | Start work on an issue |
-| `issues_add_comment` | Issues | Add a comment to an issue |
-| `issues_assigned_to_me` | Issues | Fetch issues assigned to you |
-| `issues_get_detail` | Issues | Get details for a specific issue |
-| `pull_request_assigned_to_me` | Pull Requests | Find PRs where you are assignee, author, or reviewer |
-| `pull_request_create_review` | Pull Requests | Create a review for a pull request |
-| `pull_request_get_comments` | Pull Requests | Get all comments on a pull request |
-| `pull_request_get_detail` | Pull Requests | Get details for a specific pull request |
-| `repository_get_file_content` | Repository | Get file content from a repository |
+<!-- generated:tools:start -->
+
+| Tool | Category | Read-only | Description |
+|------|----------|-----------|-------------|
+| [`app_tool_box`](/mcp/mcp-tool-app-tool-box/) | MCP Apps (app-only) | No | Internal helper for GitKraken MCP apps. App-only — agents must not call this tool. |
+| [`app_update_user_preferences`](/mcp/mcp-tool-app-update-user-preferences/) | MCP Apps (app-only) | No | Update GitKraken CLI user preferences for MCP apps. App-only; agents must not call this tool. |
+| [`git_add`](/mcp/mcp-tool-git-add/) | Git | No | Add file contents to the index (git add &lt;pathspec&gt;). |
+| [`git_blame`](/mcp/mcp-tool-git-blame/) | Git | Yes | Show what revision and author last modified each line of a file (git blame &lt;file&gt;). |
+| [`git_branch`](/mcp/mcp-tool-git-branch/) | Git | No | List or create branches (git branch). |
+| [`git_checkout`](/mcp/mcp-tool-git-checkout/) | Git | No | Switch branches or restore working tree files (git checkout &lt;branch&gt;). |
+| [`git_commit`](/mcp/mcp-tool-git-commit/) | Git | No | Record changes to the repository (git commit -m &lt;message&gt; [files...]). |
+| [`git_commit_composer`](/mcp/mcp-tool-git-commit-composer/) | Git | Yes | Show the commit composer for a repository, will open a UI if client supports it. |
+| [`git_fetch`](/mcp/mcp-tool-git-fetch/) | Git | No | Download objects and refs from another repository (git fetch). |
+| [`git_graph`](/mcp/mcp-tool-git-graph/) | Git | Yes | Show the commit graph for a repository (git log --graph), will open a UI if client supports it. |
+| [`git_log_or_diff`](/mcp/mcp-tool-git-log-or-diff/) | Git | Yes | Show commit logs or changes between commits (git log --oneline or git diff). |
+| [`git_pull`](/mcp/mcp-tool-git-pull/) | Git | No | Fetch from and integrate with another repository or a local branch (git pull). |
+| [`git_push`](/mcp/mcp-tool-git-push/) | Git | No | Update remote refs along with associated objects (git push). |
+| [`git_resolve`](/mcp/mcp-tool-git-resolve/) | Git | Yes | Show the conflict resolution UI for a repository, will open a UI if client supports it. |
+| [`git_stash`](/mcp/mcp-tool-git-stash/) | Git | No | Stash the changes in a dirty working directory (git stash). |
+| [`git_status`](/mcp/mcp-tool-git-status/) | Git | Yes | Show the working tree status (git status), will open a UI if client supports it. |
+| [`git_worktree`](/mcp/mcp-tool-git-worktree/) | Git | No | List or add git worktrees (git worktree &lt;action&gt;). |
+| [`gitkraken_workspace_list`](/mcp/mcp-tool-gitkraken-workspace-list/) | GitKraken | Yes | Lists all Gitkraken workspaces |
+| [`gitlens_launchpad`](/mcp/mcp-tool-gitlens-launchpad/) | GitLens | Yes | Gitlens Launchpad. Gets your open pull requests prioritized by what needs attention: ready to merge, has conflicts, awaiting review, etc. Helpful for checking todos, outstanding tasks, or deciding what to work on next. |
+| [`gitlens_start_review`](/mcp/mcp-tool-gitlens-start-review/) | GitLens | No | Gitlens Start Review. Creates a dedicated worktree and reviews your PR with an AI agent. |
+| [`gitlens_start_work`](/mcp/mcp-tool-gitlens-start-work/) | GitLens | No | Gitlens Start Work. Creates a work based on an issue. This tool will create a branch and link it with the issue, keeping context visible throughout your work. |
+| [`issues_add_comment`](/mcp/mcp-tool-issues-add-comment/) | Issues | No | Add a comment to an issue |
+| [`issues_assigned_to_me`](/mcp/mcp-tool-issues-assigned-to-me/) | Issues | Yes | Fetch issues assigned to the user. Set assigned_to_me=false to broaden the result to all visible issues. To filter server-side by assignee, set unassigned=true for issues with no assignee, or assigned_to=&lt;user&gt; for issues assigned to a specific person (assigned_to_me, unassigned and assigned_to are mutually exclusive). Narrow results further with repository_name/repository_organization (GitHub), project/issue_type (Jira), or is_closed. |
+| [`issues_create`](/mcp/mcp-tool-issues-create/) | Issues | No | Create a new issue. For Jira, repository_name is the project key. For Linear, repository_organization is the team UUID, key, or name. |
+| [`issues_get_detail`](/mcp/mcp-tool-issues-get-detail/) | Issues | Yes | Retrieve detailed information about a specific issue by its unique ID. For Jira Epics, the response includes a childIssues array containing all issues linked to the epic. |
+| [`pull_request_assigned_to_me`](/mcp/mcp-tool-pull-request-assigned-to-me/) | Pull Requests | Yes | Search pull requests where you are the author or assignee. Set reviewer to true to also include pull requests where you are a requested reviewer (github and gitlab only). |
+| [`pull_request_create`](/mcp/mcp-tool-pull-request-create/) | Pull Requests | No | Create a new pull request |
+| [`pull_request_create_review`](/mcp/mcp-tool-pull-request-create-review/) | Pull Requests | No | Create a review for a pull request |
+| [`pull_request_get_comments`](/mcp/mcp-tool-pull-request-get-comments/) | Pull Requests | Yes | Get all the comments in a pull requests |
+| [`pull_request_get_detail`](/mcp/mcp-tool-pull-request-get-detail/) | Pull Requests | Yes | Get an specific pull request |
+| [`repository_get_file_content`](/mcp/mcp-tool-repository-get-file-content/) | Repository | Yes | Get file content from a repository |
+
+<!-- generated:tools:end -->
 
 ---
 

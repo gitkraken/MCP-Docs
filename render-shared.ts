@@ -17,8 +17,7 @@ import path from "path";
  * matter, the run fails and nothing is written. The generator never creates a
  * page and never rewrites a whole file.
  */
-export function replaceGeneratedRegion(id: string, defaultFile: string, generated: string): void {
-    const file = resolveTarget(defaultFile);
+export function replaceGeneratedRegion(id: string, file: string, generated: string): void {
     if (!fs.existsSync(file)) {
         fail(`${file} does not exist. The generator only updates an existing page; it never creates one.`);
     }
@@ -50,22 +49,25 @@ export function replaceGeneratedRegion(id: string, defaultFile: string, generate
         original.slice(endIdx);
 
     if (updated === original) {
-        console.log(`${path.relative(process.cwd(), file)}: generated region already up to date`);
+        console.log(`${path.basename(file)}: generated region "${id}" already up to date`);
         return;
     }
     fs.writeFileSync(file, updated, "utf8");
-    console.log(`${path.relative(process.cwd(), file)}: generated region "${id}" updated`);
+    console.log(`${path.basename(file)}: generated region "${id}" updated`);
 }
 
-/** `--file <path>` targets another copy of the page (for example a scratch copy). */
-function resolveTarget(defaultFile: string): string {
-    const i = process.argv.indexOf("--file");
+/**
+ * The folder holding the pages: `MCP/` next to this script, or
+ * `--pages <dir>` to target another copy of it (for example a scratch copy).
+ */
+export function pagesDir(): string {
+    const i = process.argv.indexOf("--pages");
     if (i !== -1) {
         const value = process.argv[i + 1];
-        if (!value) fail("--file needs a path");
+        if (!value) fail("--pages needs a folder");
         return path.resolve(value);
     }
-    return defaultFile;
+    return path.join(__dirname, "MCP");
 }
 
 /** Offset just past the closing `---` of the front matter. */
@@ -86,7 +88,7 @@ export function tableCell(text: string): string {
         .replace(/\|/g, "\\|");
 }
 
-function fail(message: string): never {
+export function fail(message: string): never {
     console.error(`error: ${message}`);
     process.exit(1);
 }
