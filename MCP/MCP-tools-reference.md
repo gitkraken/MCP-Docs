@@ -9,7 +9,7 @@ plan_required: "all"
 git_hosts: [github, gitlab, azure-devops]
 integrations: []
 status: "GA"
-last_verified: "2026-03"
+last_verified: "2026-11"
 llms_include: true
 tags: [tools, tools-list, git, gitlens, issues, pull-requests, repository, plan-requirements]
 taxonomy:
@@ -22,7 +22,7 @@ custom_fields:
     page_type: "content"
 ---
 
-<kbd>Last updated: March 2026</kbd>
+<kbd>Last updated: November 2026</kbd>
 
 Tools are a fundamental part of the MCP ecosystem. They are the building blocks of the **GitKraken MCP Server** and allow you to interact with git and the integrations you have set up such as GitHub, GitLab, Jira, and Azure DevOps.
 
@@ -36,12 +36,13 @@ The GitKraken MCP Server exposes tools that AI agents access via the `tools/list
 
 Tools are organized into the following categories:
 
-- **Git**: Stage files, commit, view blame, manage branches, checkout, log or diff, push, stash, check status, and manage worktrees. Available on all plans; private remote operations require **Pro or higher**.
+- **Git**: Stage files, commit, view blame, manage branches, checkout, log or diff, fetch, pull, push, stash, check status, manage worktrees, and show the commit graph, the commit composer and the conflict resolution UI. Available on all plans; private remote operations require **Pro or higher**.
 - **GitKraken**: List workspaces. Available on all plans.
-- **GitLens**: Open Commit Composer, open Launchpad, start work on an issue, start a PR review. Requires a [GitLens](https://www.gitkraken.com/gitlens) plan.
-- **Issues**: Add comments, fetch assigned issues, retrieve issue details. Requires **Pro or higher** for cloud issue trackers (GitHub Issues, GitLab, Jira Cloud); **Advanced or higher** for enterprise trackers (Jira Data Center, Azure DevOps Server).
-- **Pull Requests**: Find assigned PRs, create reviews, retrieve comments, retrieve PR details. Requires **Pro or higher**.
+- **GitLens**: Open Launchpad, start work on an issue, start a PR review. Requires a [GitLens](https://www.gitkraken.com/gitlens) plan.
+- **Issues**: Create issues, add comments, fetch assigned issues, retrieve issue details. Requires **Pro or higher** for cloud issue trackers (GitHub Issues, GitLab, Jira Cloud); **Advanced or higher** for enterprise trackers (Jira Data Center, Azure DevOps Server).
+- **Pull Requests**: Create PRs, find assigned PRs, create reviews, retrieve comments, retrieve PR details. Requires **Pro or higher**.
 - **Repository**: Get file content. Available on all plans for public repos; **Pro or higher** for private repos.
+- **MCP Apps**: Helpers that GitKraken MCP Apps call to run their interface. Agents must not call them.
 
 You can enable or disable individual tools in your AI IDE or agent configuration. To see these tools applied in practice, refer to the [Example Workflows](/mcp/MCP-example-workflows) page.
 
@@ -101,8 +102,9 @@ You can enable or disable individual tools in your AI IDE or agent configuration
 |---|---|
 | See who last changed a specific line | `git_blame` |
 | Review commit history or compare branches/commits | `git_log_or_diff` |
-| Stage files before committing | `git_add_or_commit` (action: `add`) |
-| Commit staged changes with a message | `git_add_or_commit` (action: `commit`) |
+| Show the commit graph for a repository | `git_graph` |
+| Stage files before committing | `git_add` |
+| Commit staged changes with a message | `git_commit` |
 | Start work on an issue (creates branch + worktree) | `gitlens_start_work` |
 | Create or list branches manually | `git_branch` |
 | Switch branches or restore files | `git_checkout` |
@@ -110,18 +112,23 @@ You can enable or disable individual tools in your AI IDE or agent configuration
 | Get pull request details only | `pull_request_get_detail` |
 | Check working directory status | `git_status` |
 | Save work in progress without committing | `git_stash` |
+| Download objects and refs from a remote | `git_fetch` |
+| Fetch from and integrate with another repository or a local branch | `git_pull` |
 | Push local commits to a remote | `git_push` |
+| Open the conflict resolution UI for a repository | `git_resolve` |
 | List or create git worktrees | `git_worktree` |
 | List GitKraken workspaces | `gitkraken_workspace_list` |
 | Get file content from a repository | `repository_get_file_content` |
 | Open GitLens Launchpad | `gitlens_launchpad` |
-| Stage and compose a commit in GitLens UI | `gitlens_commit_composer` |
+| Open the commit composer for a repository | `git_commit_composer` |
 | Fetch issues assigned to you | `issues_assigned_to_me` |
 | Get details for a specific issue | `issues_get_detail` |
 | Add a comment to an issue | `issues_add_comment` |
+| Create a new issue | `issues_create` |
 | Find PRs where you are assignee, author, or reviewer | `pull_request_assigned_to_me` |
 | Create a review for a pull request | `pull_request_create_review` |
 | Get all comments on a pull request | `pull_request_get_comments` |
+| Create a new pull request | `pull_request_create` |
 
 ---
 
@@ -131,12 +138,18 @@ You can enable or disable individual tools in your AI IDE or agent configuration
 <colgroup><col style="width:220px"><col></colgroup>
 <thead><tr><th>Tool</th><th>Description</th></tr></thead>
 <tbody>
-<tr><td><code>git_add_or_commit</code></td><td>Add file contents to the index (<code>git add &lt;pathspec&gt;</code>) or record changes to the repository (<code>git commit -m &lt;message&gt; [files...]</code>). Use the <code>action</code> parameter: <code>add</code> to stage files, <code>commit</code> to record a commit with a message.</td></tr>
+<tr><td><code>git_add</code></td><td>Add file contents to the index (<code>git add &lt;pathspec&gt;</code>).</td></tr>
 <tr><td><code>git_blame</code></td><td>Show what revision and author last modified each line of a file (<code>git blame &lt;file&gt;</code>).</td></tr>
 <tr><td><code>git_branch</code></td><td>List or create branches (<code>git branch</code>).</td></tr>
 <tr><td><code>git_checkout</code></td><td>Switch branches or restore working tree files (<code>git checkout &lt;branch&gt;</code>).</td></tr>
+<tr><td><code>git_commit</code></td><td>Record changes to the repository (<code>git commit -m &lt;message&gt; [files...]</code>).</td></tr>
+<tr><td><code>git_commit_composer</code></td><td>Show the commit composer for a repository. Opens a UI if the client supports it.</td></tr>
+<tr><td><code>git_fetch</code></td><td>Download objects and refs from another repository (<code>git fetch</code>).</td></tr>
+<tr><td><code>git_graph</code></td><td>Show the commit graph for a repository (<code>git log --graph</code>). Opens a UI if the client supports it.</td></tr>
 <tr><td><code>git_log_or_diff</code></td><td>Show commit logs or changes between commits (<code>git log --oneline</code> or <code>git diff</code>).</td></tr>
+<tr><td><code>git_pull</code></td><td>Fetch from and integrate with another repository or a local branch (<code>git pull</code>).</td></tr>
 <tr><td><code>git_push</code></td><td>Update remote refs along with associated objects (<code>git push</code>).</td></tr>
+<tr><td><code>git_resolve</code></td><td>Show the conflict resolution UI for a repository. Opens a UI if the client supports it.</td></tr>
 <tr><td><code>git_stash</code></td><td>Stash the changes in a dirty working directory (<code>git stash</code>).</td></tr>
 <tr><td><code>git_status</code></td><td>Show the working tree status (<code>git status</code>).</td></tr>
 <tr><td><code>git_worktree</code></td><td>List or add git worktrees. Use <code>list</code> to see all worktrees, or <code>add</code> to create a new one.</td></tr>
@@ -157,7 +170,6 @@ You can enable or disable individual tools in your AI IDE or agent configuration
 
 | Tool | Description |
 |---|---|
-| `gitlens_commit_composer` | Opens [commit composer](https://www.gitkraken.com/blog/gitlens-17-2-commit-composer-streamlined-ux-and-enterprise-controls) in GitLens. |
 | `gitlens_launchpad` | Opens [Launchpad](https://help.gitkraken.com/gitlens/gl-launchpad/) in GitLens. |
 | `gitlens_start_review` | Gets PR details, opens a new worktree and window, opens the diff view, and starts an agent on review. |
 | `gitlens_start_work` | Gets issue details, opens a new worktree and window, and starts an agent on work. |
@@ -170,6 +182,7 @@ You can enable or disable individual tools in your AI IDE or agent configuration
 |---|---|
 | `issues_add_comment` | Add a comment to an issue. |
 | `issues_assigned_to_me` | Fetch all issues assigned to the current user. |
+| `issues_create` | Create a new issue. For Jira, `repository_name` is the project key. For Linear, `repository_organization` is the team UUID, key, or name. |
 | `issues_get_detail` | Retrieve detailed information about a specific issue by its unique ID. |
 
 ---
@@ -179,6 +192,7 @@ You can enable or disable individual tools in your AI IDE or agent configuration
 | Tool | Description |
 |---|---|
 | `pull_request_assigned_to_me` | Search pull requests where you are the assignee, author, or reviewer. |
+| `pull_request_create` | Create a new pull request. |
 | `pull_request_create_review` | Create a review for a pull request. |
 | `pull_request_get_comments` | Get all comments on a pull request. |
 | `pull_request_get_detail` | Get details for a specific pull request. |
@@ -190,3 +204,12 @@ You can enable or disable individual tools in your AI IDE or agent configuration
 | Tool | Description |
 |---|---|
 | `repository_get_file_content` | Get file content from a repository. |
+
+---
+
+## Tools Used Only by MCP Apps
+
+| Tool | Description |
+|---|---|
+| `app_tool_box` | Internal helper for GitKraken MCP Apps. App-only: agents must not call this tool. |
+| `app_update_user_preferences` | Update GitKraken CLI user preferences for MCP Apps. App-only: agents must not call this tool. |
