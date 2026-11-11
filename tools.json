@@ -1,45 +1,126 @@
 {
   "tools": [
     {
-      "name": "git_add_or_commit",
-      "description": "Add file contents to the index (git add <pathspec>) OR record changes to the repository (git commit -m <message> [files...]). Use the 'action' parameter to specify which action to perform.",
+      "name": "app_tool_box",
+      "description": " Internal helper for GitKraken MCP apps. App-only — agents must not call this tool.",
       "inputSchema": {
         "type": "object",
         "properties": {
           "action": {
-            "description": "The action to perform: 'add' or 'commit'",
-            "enum": [
-              "add",
-              "commit"
-            ],
+            "description": "App helper action to execute. Supported values: 'git_status_data', 'git_graph_data', 'git_graph_commit_changes', 'git_graph_targets', 'compose_history', 'git_status_line_changes', 'open_diff', 'open_file', 'open_in_explorer', 'detected_editors', 'git_push', 'git_pull', 'git_fetch', 'git_add_or_commit', 'git_generate_commit_message', 'git_stash', 'app_feedback', 'gitlens_ping', 'gitlens_open_graph', 'update_user_preferences', 'interaction_telemetry', 'user_status', 'save_auth_code', 'purchase_url', 'start_trial', 'resend_email', 'ai_models_list', 'ai_model_set', 'settings_snapshot', 'settings_account_url', 'settings_organizations', 'settings_set_organization', 'compose_plan', 'compose_plan_start', 'compose_plan_status', 'compose_plan_cancel', 'compose_open_diff', 'compose_apply_plan', 'git_resolve_data', 'git_resolve_prepare_start', 'git_resolve_prepare_status', 'git_resolve_prepare_cancel', 'git_resolve_file_retry', 'git_resolve_file_open_diff', 'git_resolve_apply', 'git_resolve_discard'.",
             "type": "string"
           },
           "directory": {
-            "description": "The directory to run git add or commit in",
+            "type": "string"
+          },
+          "options": {
+            "description": "Per-action options. Supported keys depend on the 'action' value and include 'app_name', 'base_remote_url', 'base_sha', 'code', 'comment', 'commit_id', 'commit_sha', 'context', 'cursor', 'custom_instructions', 'data', 'description', 'direction', 'editor_id', 'file_allow_list', 'file_path', 'files', 'files_json', 'focused_file_paths', 'force', 'git_action', 'git_commit_composer_app_collapsed', 'git_graph_app_collapsed', 'git_status_app_collapsed', 'guidance', 'head_remote_url', 'head_sha', 'include_untracked', 'instructions', 'interaction', 'issue_url', 'job_id', 'launchpad_issue_filters', 'launchpad_pr_filters', 'launchpad_stale_threshold_days', 'launchpad_view', 'message', 'organization_id', 'page', 'plan_json', 'pr_number', 'pr_url', 'provider', 'providers', 'range_start_sha', 'refresh', 'sentiment', 'session_id', 'source_type', 'staged_only', and 'target_branch'.",
+            "properties": {},
+            "type": "object"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "ui": {
+          "visibility": [
+            "app"
+          ]
+        }
+      }
+    },
+    {
+      "name": "app_update_user_preferences",
+      "description": " Update GitKraken CLI user preferences for MCP apps. App-only; agents must not call this tool.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "git_commit_composer_app_collapsed": {
+            "description": "When true, future Git Commit Composer overview app loads start in the collapsed state.",
+            "type": "boolean"
+          },
+          "git_graph_app_collapsed": {
+            "description": "When true, future Git Graph overview app loads start in the collapsed state.",
+            "type": "boolean"
+          },
+          "git_status_app_collapsed": {
+            "description": "When true, future Git Status overview app loads start in the collapsed state.",
+            "type": "boolean"
+          },
+          "launchpad_issue_filters": {
+            "description": "Serialized issue filter selections for Launchpad.",
+            "type": "string"
+          },
+          "launchpad_pr_filters": {
+            "description": "Serialized pull request filter selections for Launchpad.",
+            "type": "string"
+          },
+          "launchpad_stale_threshold_days": {
+            "description": "Number of days of inactivity after which a Launchpad pull request is treated as stale and de-prioritized.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "launchpad_view": {
+            "description": "Selected Launchpad view: pull-requests, issues, or all.",
+            "enum": [
+              "pull-requests",
+              "issues",
+              "all"
+            ],
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "ui": {
+          "visibility": [
+            "app"
+          ]
+        }
+      }
+    },
+    {
+      "name": "git_add",
+      "description": "Add file contents to the index (git add <pathspec>).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "directory": {
+            "description": "The directory to run git add in",
             "type": "string"
           },
           "files": {
-            "description": "Optional array of files to add or commit. If omitted, all files are added or all staged changes are committed.",
+            "description": "Optional array of files to add. If omitted, all files are added.",
             "items": {
               "type": "string"
             },
             "type": "array"
-          },
-          "message": {
-            "description": "The commit message (required if action is 'commit')",
-            "type": "string"
           }
         },
         "required": [
-          "directory",
-          "action"
+          "directory"
         ]
       },
       "annotations": {
         "readOnlyHint": false,
         "destructiveHint": true,
         "idempotentHint": false,
-        "openWorldHint": true
+        "openWorldHint": false
       }
     },
     {
@@ -101,7 +182,7 @@
         "readOnlyHint": false,
         "destructiveHint": true,
         "idempotentHint": false,
-        "openWorldHint": true
+        "openWorldHint": false
       }
     },
     {
@@ -132,6 +213,142 @@
       }
     },
     {
+      "name": "git_commit",
+      "description": "Record changes to the repository (git commit -m <message> [files...]).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "description": "Optional commit description/body",
+            "type": "string"
+          },
+          "directory": {
+            "description": "The directory to run git commit in",
+            "type": "string"
+          },
+          "files": {
+            "description": "Optional array of files to commit. If omitted, all staged changes are committed.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "message": {
+            "description": "The commit message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory",
+          "message"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "git_commit_composer",
+      "description": " Show the commit composer for a repository, will open a UI if client supports it.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "custom_instructions": {
+            "description": "Free-form guidance for the AI commit composer. Only meaningful when 'direction' is 'custom'.",
+            "type": "string"
+          },
+          "direction": {
+            "description": "Initial grouping preset for the composer. 'auto' lets the AI choose; 'area' groups by codebase area / subsystem; 'type' groups by conventional commit type; 'custom' uses the supplied 'custom_instructions' text. Defaults to 'auto'.",
+            "enum": [
+              "auto",
+              "area",
+              "type",
+              "custom"
+            ],
+            "type": "string"
+          },
+          "directory": {
+            "description": "Path of the working directory.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "ui": {
+          "resourceUri": "ui://gk-cli/app/git-commit-composer",
+          "visibility": [
+            "model",
+            "app"
+          ]
+        }
+      }
+    },
+    {
+      "name": "git_fetch",
+      "description": "Download objects and refs from another repository (git fetch).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "directory": {
+            "description": "The directory to run git fetch in",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "git_graph",
+      "description": " Show the commit graph for a repository (git log --graph), will open a UI if client supports it.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "directory": {
+            "description": "Path of the working directory.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "ui": {
+          "resourceUri": "ui://gk-cli/app/git-graph",
+          "visibility": [
+            "model",
+            "app"
+          ]
+        }
+      }
+    },
+    {
       "name": "git_log_or_diff",
       "description": "Show commit logs or changes between commits (git log --oneline or git diff).",
       "inputSchema": {
@@ -145,12 +362,27 @@
             ],
             "type": "string"
           },
-          "commit": {
-            "description": "Optional commit to compare against HEAD for 'diff', defaults to HEAD",
-            "type": "string"
+          "authors": {
+            "description": "Optional array of author names or emails to filter commits by (only applies to 'log' action)",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           },
           "directory": {
             "description": "The directory to run the command in",
+            "type": "string"
+          },
+          "revision_range": {
+            "description": "Optional revision range (e.g., 'HEAD', 'main..feature', 'abc123', 'HEAD~5..HEAD'). For 'diff' action, shows differences for the specified range. For 'log' action, shows commits in the range. Defaults to HEAD.",
+            "type": "string"
+          },
+          "since": {
+            "description": "Optional date/timestamp/relative time to show commits after (e.g., '2024-01-01', '2 weeks ago', 'yesterday', '1 hour ago', '3 days ago'). Only applies to 'log' action.",
+            "type": "string"
+          },
+          "until": {
+            "description": "Optional date/timestamp/relative time to show commits before (e.g., '2024-12-31', '1 week ago', 'today', 'yesterday', '2 hours ago'). Only applies to 'log' action.",
             "type": "string"
           }
         },
@@ -162,6 +394,28 @@
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "git_pull",
+      "description": "Fetch from and integrate with another repository or a local branch (git pull).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "directory": {
+            "description": "The directory to run git pull in",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
         "idempotentHint": false,
         "openWorldHint": true
       }
@@ -189,39 +443,17 @@
       }
     },
     {
-      "name": "git_stash",
-      "description": "Stash the changes in a dirty working directory (git stash).",
+      "name": "git_resolve",
+      "description": " Show the conflict resolution UI for a repository, will open a UI if client supports it.",
       "inputSchema": {
         "type": "object",
         "properties": {
           "directory": {
-            "description": "The directory to run git stash in",
+            "description": "Path of the working directory.",
             "type": "string"
           },
-          "name": {
-            "description": "Optional name for the stash (used as the stash message)",
-            "type": "string"
-          }
-        },
-        "required": [
-          "directory"
-        ]
-      },
-      "annotations": {
-        "readOnlyHint": false,
-        "destructiveHint": true,
-        "idempotentHint": false,
-        "openWorldHint": true
-      }
-    },
-    {
-      "name": "git_status",
-      "description": "Show the working tree status (git status).",
-      "inputSchema": {
-        "type": "object",
-        "properties": {
-          "directory": {
-            "description": "The directory to run git status in",
+          "instructions": {
+            "description": "Optional guidance for the AI conflict resolution flow.",
             "type": "string"
           }
         },
@@ -234,6 +466,80 @@
         "destructiveHint": false,
         "idempotentHint": false,
         "openWorldHint": true
+      },
+      "_meta": {
+        "ui": {
+          "resourceUri": "ui://gk-cli/app/git-resolve",
+          "visibility": [
+            "model",
+            "app"
+          ]
+        }
+      }
+    },
+    {
+      "name": "git_stash",
+      "description": "Stash the changes in a dirty working directory (git stash).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "directory": {
+            "description": "The directory to run git stash in",
+            "type": "string"
+          },
+          "include_untracked": {
+            "description": "When true, include untracked files in the stash.",
+            "type": "boolean"
+          },
+          "name": {
+            "description": "Optional name for the stash (used as the stash message)",
+            "type": "string"
+          },
+          "staged_only": {
+            "description": "When true, stash only the currently staged changes and leave unstaged work untouched.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "directory"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "git_status",
+      "description": " Show the working tree status (git status), will open a UI if client supports it.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "directory": {
+            "description": "Path of the working directory.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "ui": {
+          "resourceUri": "ui://gk-cli/app/git-status",
+          "visibility": [
+            "model",
+            "app"
+          ]
+        }
       }
     },
     {
@@ -280,11 +586,96 @@
       "description": " Lists all Gitkraken workspaces",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {},
+        "required": []
       },
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "gitlens_launchpad",
+      "description": " Gitlens Launchpad. Gets your open pull requests prioritized by what needs attention: ready to merge, has conflicts, awaiting review, etc. Helpful for checking todos, outstanding tasks, or deciding what to work on next.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "directory": {
+            "description": "Path of the working directory.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "gitlens_start_review",
+      "description": " Gitlens Start Review. Creates a dedicated worktree and reviews your PR with an AI agent.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "directory": {
+            "description": "Path of the working directory.",
+            "type": "string"
+          },
+          "instructions": {
+            "description": "OPTIONAL. Use this ONLY if the user explicitly provided specific requirements about the review focus, review criteria, or what aspects to check. Do NOT use this parameter unless you are 100% certain about the user's intentions. Examples: 'focus on security issues', 'check for performance regressions', 'review only the authentication logic'.",
+            "type": "string"
+          },
+          "pr_url": {
+            "description": "URL of the PR to start review.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory",
+          "pr_url"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "gitlens_start_work",
+      "description": " Gitlens Start Work. Creates a work based on an issue. This tool will create a branch and link it with the issue, keeping context visible throughout your work.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "directory": {
+            "description": "Path of the working directory.",
+            "type": "string"
+          },
+          "instructions": {
+            "description": "OPTIONAL. Use this ONLY if the user explicitly provided specific requirements about the implementation approach, or additional context to supplement the issue. Do NOT use this parameter unless you are 100% certain about the user's intentions.",
+            "type": "string"
+          },
+          "issue_url": {
+            "description": "URL of the issue to start work on.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "directory",
+          "issue_url"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
         "idempotentHint": false,
         "openWorldHint": true
       }
@@ -295,8 +686,16 @@
       "inputSchema": {
         "type": "object",
         "properties": {
+          "azure_organization": {
+            "description": "Optionally set the Azure DevOps organization name. Required for Azure DevOps",
+            "type": "string"
+          },
+          "azure_project": {
+            "description": "Optionally set the Azure DevOps project name. Required for Azure DevOps",
+            "type": "string"
+          },
           "comment": {
-            "description": "The text content of the comment",
+            "description": "The text content of the comment (markdown; converted to Jira's format for Jira. Azure DevOps expects HTML)",
             "type": "string"
           },
           "issue_id": {
@@ -304,10 +703,15 @@
             "type": "string"
           },
           "provider": {
-            "description": "Specify the issue provider",
+            "description": "Specify the issue provider. Default is JIRA",
             "enum": [
               "github",
-              "jira"
+              "gitlab",
+              "jira",
+              "azure",
+              "azure_devops_server",
+              "linear",
+              "trello"
             ],
             "type": "string"
           },
@@ -335,21 +739,70 @@
     },
     {
       "name": "issues_assigned_to_me",
-      "description": "Fetch issues assigned to the user",
+      "description": "Fetch issues assigned to the user. Set assigned_to_me=false to broaden the result to all visible issues. To filter server-side by assignee, set unassigned=true for issues with no assignee, or assigned_to=<user> for issues assigned to a specific person (assigned_to_me, unassigned and assigned_to are mutually exclusive). Narrow results further with repository_name/repository_organization (GitHub), project/issue_type (Jira), or is_closed.",
       "inputSchema": {
         "type": "object",
         "properties": {
+          "assigned_to": {
+            "description": "List only issues assigned to this user (username/email/accountId, provider-dependent). Mutually exclusive with assigned_to_me and unassigned. Not supported by Trello/Linear.",
+            "type": "string"
+          },
+          "assigned_to_me": {
+            "description": "Whether to limit results to issues assigned to you. Defaults to true.",
+            "type": "boolean"
+          },
+          "azure_organization": {
+            "description": "Optionally set the Azure DevOps organization name. Required for Azure DevOps",
+            "type": "string"
+          },
+          "azure_project": {
+            "description": "Optionally set the Azure DevOps project name. Required for Azure DevOps",
+            "type": "string"
+          },
+          "fields": {
+            "description": "Optional comma-separated list of top-level fields to keep on each result. Recommended for list/overview calls: omitting it returns every field, which on large lists can overflow the context window. Omit only when you need the full objects. If every requested name is unknown, the request is rejected; field names are case-sensitive. Available fields: id, url, number, provider, repoName, repoOwner, repoHost, project, title, description, issueType, status, updatedAt, assignees, comments, childIssues.",
+            "type": "string"
+          },
+          "is_closed": {
+            "description": "Set to true to return closed/done issues instead of open issues. Defaults to false.",
+            "type": "boolean"
+          },
+          "issue_type": {
+            "description": "Issue type. Jira only (e.g. Bug, Story, Task).",
+            "type": "string"
+          },
           "page": {
             "description": "Optional parameter to specify the page number, defaults to 1",
             "type": "number"
           },
+          "project": {
+            "description": "Project key. Jira only (e.g. GKDEV).",
+            "type": "string"
+          },
           "provider": {
-            "description": "Specify the issue provider",
+            "description": "Specify the issue provider. Default is JIRA",
             "enum": [
               "github",
-              "jira"
+              "gitlab",
+              "jira",
+              "azure",
+              "azure_devops_server",
+              "linear",
+              "trello"
             ],
             "type": "string"
+          },
+          "repository_name": {
+            "description": "Repository name. GitHub only; must be combined with repository_organization.",
+            "type": "string"
+          },
+          "repository_organization": {
+            "description": "Organization name. GitHub only.",
+            "type": "string"
+          },
+          "unassigned": {
+            "description": "Set to true to list only unassigned issues. Mutually exclusive with assigned_to_me and assigned_to. Not supported by Trello.",
+            "type": "boolean"
           }
         },
         "required": [
@@ -364,20 +817,107 @@
       }
     },
     {
-      "name": "issues_get_detail",
-      "description": "Retrieve detailed information about a specific issue by its unique ID",
+      "name": "issues_create",
+      "description": "Create a new issue. For Jira, repository_name is the project key. For Linear, repository_organization is the team UUID, key, or name.",
       "inputSchema": {
         "type": "object",
         "properties": {
+          "assignees": {
+            "description": "Optional list of assignees. GitHub: usernames; GitLab: user IDs; Jira/Linear/Azure: first entry is used",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "azure_organization": {
+            "description": "Optionally set the Azure DevOps organization name. Required for Azure DevOps",
+            "type": "string"
+          },
+          "azure_project": {
+            "description": "Optionally set the Azure DevOps project name. Required for Azure DevOps",
+            "type": "string"
+          },
+          "body": {
+            "description": "The body/description of the issue (markdown; converted to Jira's format for Jira. Azure DevOps expects HTML)",
+            "type": "string"
+          },
+          "issue_type": {
+            "description": "Issue type. Jira only (e.g. Bug, Story, Task); defaults to Task.",
+            "type": "string"
+          },
+          "labels": {
+            "description": "Optional list of label names to apply",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "provider": {
+            "description": "Specify the issue provider. Default is JIRA",
+            "enum": [
+              "github",
+              "gitlab",
+              "jira",
+              "azure",
+              "azure_devops_server",
+              "linear",
+              "trello"
+            ],
+            "type": "string"
+          },
+          "repository_name": {
+            "description": "Repository name. Required for GitHub/GitLab; required for Jira, where it is the project key (e.g. GKCLI)",
+            "type": "string"
+          },
+          "repository_organization": {
+            "description": "Organization name. Required for GitHub/GitLab; for Linear use as team identifier",
+            "type": "string"
+          },
+          "title": {
+            "description": "The title of the issue",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "title"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "issues_get_detail",
+      "description": "Retrieve detailed information about a specific issue by its unique ID. For Jira Epics, the response includes a childIssues array containing all issues linked to the epic.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "azure_organization": {
+            "description": "Optionally set the Azure DevOps organization name. Required for Azure DevOps",
+            "type": "string"
+          },
+          "azure_project": {
+            "description": "Optionally set the Azure DevOps project name. Required for Azure DevOps",
+            "type": "string"
+          },
           "issue_id": {
-            "description": "The ID of the issue to retrieve",
+            "description": "The Number or ID of the issue to retrieve. Supported formats include GitHub/GitLab numeric IDs (e.g., 123 or #123), Jira keys (e.g., PROJ-123), Linear issue IDs (UUID format), etc.",
             "type": "string"
           },
           "provider": {
-            "description": "Specify the issue provider",
+            "description": "Specify the issue provider. Default is JIRA",
             "enum": [
               "github",
-              "jira"
+              "gitlab",
+              "jira",
+              "azure",
+              "azure_devops_server",
+              "linear",
+              "trello"
             ],
             "type": "string"
           },
@@ -404,10 +944,18 @@
     },
     {
       "name": "pull_request_assigned_to_me",
-      "description": "Search pull requests where you are the assignee, author, or reviewer",
+      "description": "Search pull requests where you are the author or assignee. Set reviewer to true to also include pull requests where you are a requested reviewer (github and gitlab only).",
       "inputSchema": {
         "type": "object",
         "properties": {
+          "azure_project": {
+            "description": "Optionally set the Azure DevOps project name of the pull request. Required for Azure DevOps",
+            "type": "string"
+          },
+          "fields": {
+            "description": "Optional comma-separated list of top-level fields to keep on each result. Recommended for list/overview calls: omitting it returns every field, which on large lists can overflow the context window. Omit only when you need the full objects. If every requested name is unknown, the request is rejected; field names are case-sensitive. Available fields: timestampCreatedAt, updatedAt, mergedAt, closedAt, title, description, url, state, owner, repoName, repoHost, provider, id, nodeId, repositoryId, projectId, organization, files, clone, number, merged, draft, approved, authoredByMe, headBranch, baseBranch, headRepo, author, assignees, reviews, reviewDecision, mergeableState, buildStatuses, baseRef, headRef, additions, deletions, changedFiles, filesTruncated, currentViewer.",
+            "type": "string"
+          },
           "is_closed": {
             "description": "Set to true if you want to search for closed pull requests",
             "type": "boolean"
@@ -416,6 +964,17 @@
             "description": "Optional parameter to specify the page number, defaults to 1",
             "type": "number"
           },
+          "provider": {
+            "description": "Specify the git provider",
+            "enum": [
+              "github",
+              "gitlab",
+              "bitbucket",
+              "azure",
+              "azure_devops_server"
+            ],
+            "type": "string"
+          },
           "repository_name": {
             "description": "Set the repository name of the pull request. Required for Azure DevOps and Bitbucket",
             "type": "string"
@@ -423,12 +982,93 @@
           "repository_organization": {
             "description": "Set the organization name of the pull request. Required for Azure DevOps and Bitbucket",
             "type": "string"
+          },
+          "reviewer": {
+            "description": "Set to true to also include pull requests where you are a requested reviewer. Supported by github, github_enterprise, gitlab, gitlab_self_hosted; ignored for Azure DevOps and Bitbucket.",
+            "type": "boolean"
+          },
+          "with_branches": {
+            "description": "Include head/base branch names on each result. For GitHub this triggers an extra API call per PR, so leave off unless branches are needed.",
+            "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "provider"
+        ]
       },
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "pull_request_create",
+      "description": "Create a new pull request",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "assign_to_me": {
+            "description": "Assign the newly created pull request to the current authenticated user when supported by the provider",
+            "type": "boolean"
+          },
+          "azure_project": {
+            "description": "Optionally set the Azure DevOps project name of the pull request. Required for Azure DevOps",
+            "type": "string"
+          },
+          "body": {
+            "description": "The body/description of the pull request",
+            "type": "string"
+          },
+          "is_draft": {
+            "description": "Create as draft pull request",
+            "type": "boolean"
+          },
+          "provider": {
+            "description": "Specify the git provider",
+            "enum": [
+              "github",
+              "gitlab",
+              "bitbucket",
+              "azure",
+              "azure_devops_server"
+            ],
+            "type": "string"
+          },
+          "repository_name": {
+            "description": "Set the repository name of the pull request. Required for Azure DevOps and Bitbucket",
+            "type": "string"
+          },
+          "repository_organization": {
+            "description": "Set the organization name of the pull request. Required for Azure DevOps and Bitbucket",
+            "type": "string"
+          },
+          "source_branch": {
+            "description": "Source branch from which the pull request will be created",
+            "type": "string"
+          },
+          "target_branch": {
+            "description": "Target branch where the pull request will be merged",
+            "type": "string"
+          },
+          "title": {
+            "description": "The title of the pull request",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repository_name",
+          "repository_organization",
+          "title",
+          "source_branch",
+          "target_branch",
+          "provider"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
         "idempotentHint": false,
         "openWorldHint": true
       }
@@ -442,6 +1082,21 @@
           "approve": {
             "description": "Set to true if you want to approve the pull request",
             "type": "boolean"
+          },
+          "azure_project": {
+            "description": "Optionally set the Azure DevOps project name of the pull request. Required for Azure DevOps",
+            "type": "string"
+          },
+          "provider": {
+            "description": "Specify the git provider",
+            "enum": [
+              "github",
+              "gitlab",
+              "bitbucket",
+              "azure",
+              "azure_devops_server"
+            ],
+            "type": "string"
           },
           "pull_request_id": {
             "description": "ID of the pull request to create the review for",
@@ -464,7 +1119,8 @@
           "repository_name",
           "repository_organization",
           "pull_request_id",
-          "review"
+          "review",
+          "provider"
         ]
       },
       "annotations": {
@@ -480,6 +1136,21 @@
       "inputSchema": {
         "type": "object",
         "properties": {
+          "azure_project": {
+            "description": "Optionally set the Azure DevOps project name of the pull request. Required for Azure DevOps",
+            "type": "string"
+          },
+          "provider": {
+            "description": "Specify the git provider",
+            "enum": [
+              "github",
+              "gitlab",
+              "bitbucket",
+              "azure",
+              "azure_devops_server"
+            ],
+            "type": "string"
+          },
           "pull_request_id": {
             "description": "ID of the pull request to add the comment to",
             "type": "string"
@@ -496,7 +1167,8 @@
         "required": [
           "repository_name",
           "repository_organization",
-          "pull_request_id"
+          "pull_request_id",
+          "provider"
         ]
       },
       "annotations": {
@@ -512,8 +1184,23 @@
       "inputSchema": {
         "type": "object",
         "properties": {
+          "azure_project": {
+            "description": "Optionally set the Azure DevOps project name of the pull request. Required for Azure DevOps",
+            "type": "string"
+          },
+          "provider": {
+            "description": "Specify the git provider",
+            "enum": [
+              "github",
+              "gitlab",
+              "bitbucket",
+              "azure",
+              "azure_devops_server"
+            ],
+            "type": "string"
+          },
           "pull_request_files": {
-            "description": "Set to true if you want to retrieve the files changed in the pull request. Not supported by Azure DevOps.",
+            "description": "Set to true if you want to retrieve the files changed in the pull request. Not supported by Azure DevOps. On GitHub and GitLab the list is paged past the provider's first page. `changedFiles` is the provider-reported total where the provider supplies one; it is absent otherwise, and Bitbucket never supplies it. `filesTruncated` is true when the returned list is known to be short and absent otherwise; Bitbucket Cloud never sets it because that provider gives no completeness signal. `diffOmitted` on a file means its patch, blob sha and urls were elided to bound the response size. `additions`, `deletions` and `changes` are populated on GitHub only. The `files` key is null, not absent, when this parameter is not set.",
             "type": "boolean"
           },
           "pull_request_id": {
@@ -532,7 +1219,8 @@
         "required": [
           "pull_request_id",
           "repository_name",
-          "repository_organization"
+          "repository_organization",
+          "provider"
         ]
       },
       "annotations": {
@@ -548,8 +1236,23 @@
       "inputSchema": {
         "type": "object",
         "properties": {
+          "azure_project": {
+            "description": "Optionally set the Azure DevOps project name of the pull request. Required for Azure DevOps",
+            "type": "string"
+          },
           "file_path": {
             "description": "File path to retrieve from the repository",
+            "type": "string"
+          },
+          "provider": {
+            "description": "Specify the git provider",
+            "enum": [
+              "github",
+              "gitlab",
+              "bitbucket",
+              "azure",
+              "azure_devops_server"
+            ],
             "type": "string"
           },
           "ref": {
@@ -569,7 +1272,8 @@
           "repository_name",
           "repository_organization",
           "ref",
-          "file_path"
+          "file_path",
+          "provider"
         ]
       },
       "annotations": {
