@@ -27,6 +27,6 @@ custom_fields:
 
 <kbd>Last updated: November 2026</kbd>
 
-Add comments, fetch assigned issues, retrieve issue details. Requires **Pro or higher** for cloud issue trackers (GitHub Issues, GitLab, Jira Cloud); **Advanced or higher** for enterprise trackers (Jira Data Center, Azure DevOps Server).
+Create issues, add comments, fetch assigned issues, retrieve issue details. Requires **Pro or higher** for cloud issue trackers (GitHub Issues, GitLab, Jira Cloud); **Advanced or higher** for enterprise trackers (Jira Data Center, Azure DevOps Server).
 
 ---

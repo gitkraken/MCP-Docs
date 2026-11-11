@@ -27,6 +27,6 @@ custom_fields:
 
 <kbd>Last updated: November 2026</kbd>
 
-Find assigned PRs, create reviews, retrieve comments, retrieve PR details. Requires **Pro or higher**.
+Create PRs, find assigned PRs, create reviews, retrieve comments, retrieve PR details. Requires **Pro or higher**.
 
 ---

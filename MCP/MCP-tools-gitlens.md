@@ -27,6 +27,6 @@ custom_fields:
 
 <kbd>Last updated: November 2026</kbd>
 
-Open Commit Composer, open Launchpad, start work on an issue, start a PR review. Requires a [GitLens](https://www.gitkraken.com/gitlens) plan.
+Open Launchpad, start work on an issue, start a PR review. Requires a [GitLens](https://www.gitkraken.com/gitlens) plan.
 
 ---

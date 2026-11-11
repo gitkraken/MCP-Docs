@@ -27,6 +27,6 @@ custom_fields:
 
 <kbd>Last updated: November 2026</kbd>
 
-Stage files, commit, view blame, manage branches, checkout, log or diff, push, stash, check status, and manage worktrees. Available on all plans; private remote operations require **Pro or higher**.
+Stage files, commit, view blame, manage branches, checkout, log or diff, fetch, pull, push, stash, check status, manage worktrees, and show the commit graph, the commit composer and the conflict resolution UI. Available on all plans; private remote operations require **Pro or higher**.
 
 ---
