@@ -20,6 +20,9 @@ custom_fields:
     nav_order: 20
     nav_parent: "mcp-tools-reference"
     page_type: "index"
+    card_icon: "stack-2"
+    card_color: "blue"
+    card_description: "List your GitKraken workspaces"
 ---
 
 <kbd>Last updated: November 2026</kbd>

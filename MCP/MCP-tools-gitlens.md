@@ -20,6 +20,9 @@ custom_fields:
     nav_order: 30
     nav_parent: "mcp-tools-reference"
     page_type: "index"
+    card_icon: "sparkles"
+    card_color: "green"
+    card_description: "Open Launchpad, start work on an issue and start a PR review in GitLens"
 ---
 
 <kbd>Last updated: November 2026</kbd>
