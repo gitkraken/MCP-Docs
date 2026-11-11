@@ -43,9 +43,13 @@ The prompt returns a branch name string your agent can use with `git_checkout` o
 
 ## Summary
 
+<!-- generated:prompts:start -->
+
 | Prompt | Category | Description |
 |--------|----------|-------------|
-| [code_review_branch](#code_review_branch) | Code Review | Generate a code review branch name based on provided context |
+| [code_review_branch](#code_review_branch) | Code Review | Generate a code review branch name based on the provided context. |
+
+<!-- generated:prompts:end -->
 
 ---
 
