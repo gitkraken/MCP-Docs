@@ -20,6 +20,9 @@ custom_fields:
     nav_order: 40
     nav_parent: "mcp-tools-reference"
     page_type: "index"
+    card_icon: "list-check"
+    card_color: "amber"
+    card_description: "Find, read, create and comment on issues"
 ---
 
 <kbd>Last updated: November 2026</kbd>

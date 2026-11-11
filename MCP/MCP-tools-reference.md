@@ -19,7 +19,10 @@ custom_fields:
     nav_label: "Tools Reference"
     nav_order: 40
     nav_parent: ""
-    page_type: "content"
+    page_type: "index"
+    card_icon: "tool"
+    card_color: "purple"
+    card_description: "Every tool the GitKraken MCP Server exposes, by category"
 ---
 
 <kbd>Last updated: March 2026</kbd>

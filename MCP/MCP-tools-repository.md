@@ -20,6 +20,9 @@ custom_fields:
     nav_order: 60
     nav_parent: "mcp-tools-reference"
     page_type: "index"
+    card_icon: "book"
+    card_color: "red"
+    card_description: "Get file content from a repository"
 ---
 
 <kbd>Last updated: November 2026</kbd>

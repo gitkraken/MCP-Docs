@@ -20,6 +20,9 @@ custom_fields:
     nav_order: 70
     nav_parent: "mcp-tools-reference"
     page_type: "index"
+    card_icon: "apps"
+    card_color: "purple"
+    card_description: "Helpers that GitKraken MCP Apps call; agents must not call them"
 ---
 
 <kbd>Last updated: November 2026</kbd>
