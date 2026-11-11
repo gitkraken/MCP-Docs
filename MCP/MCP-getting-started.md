@@ -20,6 +20,7 @@ custom_fields:
     nav_order: 10
     nav_parent: ""
     page_type: "main-index"
+    anchor_map: ["claude-code|mcp-install-claude-code", "openai-codex-cli|mcp-install-codex-cli", "codex-desktop|mcp-install-codex-desktop", "gemini-cli|mcp-install-gemini-cli", "vs-code|mcp-install-vscode", "cursor|mcp-install-cursor", "claude-desktop|mcp-install-claude-desktop", "amazon-q-developer|mcp-install-amazon-q-developer", "kiro-ide|mcp-install-kiro", "jetbrains-intellij|mcp-install-jetbrains-intellij", "google-antigravity|mcp-install-antigravity"]
 ---
 
 <kbd>Last updated: March 2026</kbd>
